@@ -18,11 +18,23 @@ public class DatosSintomas {
         catch(Exception e) {
             e.printStackTrace();
         }
-        if ( dir.indexOf("out") >=0 ){
+
+        boolean esDesarrollo = false;
+        File file2 = new File(dir);
+        String[] a = file2.list();
+        for(int i=0; i<a.length; i++){
+            if(a[i].equals("src")){
+                esDesarrollo=true;
+            }
+        }
+
+        if ( !esDesarrollo ){
             path = dir+separador+nombrePaquete+separador+nombreArchivo;
         } else {
             path = dir+separador+"src"+separador+nombrePaquete+separador+nombreArchivo;
         }
+
+        System.out.println("ruta:       "+path);
         return path;
     }
 
@@ -30,6 +42,7 @@ public class DatosSintomas {
         ObjectInputStream file = new ObjectInputStream(new FileInputStream(getPath()));
         Sintomas sintomas = (Sintomas) file.readObject();
         file.close();
+
         return sintomas;
     }
 
