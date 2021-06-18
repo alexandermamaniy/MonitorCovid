@@ -7,21 +7,39 @@ import java.io.*;
 public class DatosSintomas {
 
     private final String nombreArchivo = "sintomas.dat";
+    private final String nombrePaquete = "cargarsintomas";
+
+    private String getPath(){
+        File miDir = new File (".");
+        String dir="", path="", separador = System.getProperty("file.separator");
+        try {
+            dir= miDir.getCanonicalPath();
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+        }
+        if ( dir.indexOf("out") >=0 ){
+            path = dir+separador+nombrePaquete+separador+nombreArchivo;
+        } else {
+            path = dir+separador+"src"+separador+nombrePaquete+separador+nombreArchivo;
+        }
+        return path;
+    }
 
     public Sintomas leerDatosSintomas() throws IOException, ClassNotFoundException {
-        ObjectInputStream file = new ObjectInputStream(new FileInputStream(nombreArchivo));
+        ObjectInputStream file = new ObjectInputStream(new FileInputStream(getPath()));
         Sintomas sintomas = (Sintomas) file.readObject();
         file.close();
         return sintomas;
     }
 
     public boolean existeDatosSintomas(){
-        File f = new File(nombreArchivo);
+        File f = new File(getPath());
         return f.exists();
     }
 
     public void guardarDatosSintomas(Sintomas sintomas) throws IOException {
-        ObjectOutputStream file = new ObjectOutputStream(new FileOutputStream(nombreArchivo));
+        ObjectOutputStream file = new ObjectOutputStream(new FileOutputStream(getPath()));
         file.writeObject(sintomas);
         file.close();
     }
