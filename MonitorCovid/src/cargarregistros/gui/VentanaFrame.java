@@ -47,9 +47,9 @@ public class VentanaFrame extends JFrame {
         add(registroJPanel);
 
         setVisible(true);
-        synchronized(this){
+        synchronized(frameRegistro){
             try{
-                this.wait();
+                frameRegistro.wait();
             }
             catch(InterruptedException ex){
             }

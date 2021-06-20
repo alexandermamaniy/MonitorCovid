@@ -33,7 +33,6 @@ public class DatosRegistros {
         } else {
             path = dir+separador+"src"+separador+nombrePaquete+separador+nombreArchivo;
         }
-        System.out.println("ruta:       "+path);
         return path;
     }
 

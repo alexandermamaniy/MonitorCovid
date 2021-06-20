@@ -49,9 +49,9 @@ public class VentanaFrame extends JFrame {
         sintomaJPanel = new SintomaJPanel(sintomas);
         add(sintomaJPanel);
         setVisible(true);
-        synchronized(this){
+        synchronized(frame){
             try{
-                this.wait();
+                frame.wait();
             }
             catch(InterruptedException ex){
             }

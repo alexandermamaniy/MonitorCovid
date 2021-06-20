@@ -22,6 +22,7 @@ public class DatosSintomas {
         boolean esDesarrollo = false;
         File file2 = new File(dir);
         String[] a = file2.list();
+
         for(int i=0; i<a.length; i++){
             if(a[i].equals("src")){
                 esDesarrollo=true;
@@ -33,8 +34,7 @@ public class DatosSintomas {
         } else {
             path = dir+separador+"src"+separador+nombrePaquete+separador+nombreArchivo;
         }
-
-        System.out.println("ruta:       "+path);
+        System.out.println(path);
         return path;
     }
 
