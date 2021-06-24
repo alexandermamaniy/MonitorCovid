@@ -53,7 +53,9 @@ public class RegistroJPanel extends JPanel implements ItemListener, ActionListen
     }
 
     public void itemStateChanged(ItemEvent e){
+
         if (e.getSource()== comboCategoriaSintoma && e.getStateChange() == ItemEvent.DESELECTED){
+
             String a = (String)(comboCategoriaSintoma.getSelectedItem());
             CrearSintomaRegistro crearSintomaRegistro = new CrearSintomaRegistro(sintomasMonitorDisponibles);
             sintomasPaciente.add(crearSintomaRegistro.crear(a));

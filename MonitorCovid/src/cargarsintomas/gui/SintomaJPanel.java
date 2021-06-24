@@ -57,11 +57,14 @@ public class SintomaJPanel extends JPanel implements  ActionListener {
             try {
                 String categoria = (String) comboCategoriaSintoma.getSelectedItem();
                 String name = textFieldSintoma.getText();
-                CrearSintoma crearSintoma = new CrearSintoma();
-                Sintoma sintoma = crearSintoma.crear(name, categoria, sintomas);
-                sintomas.add(sintoma);
-                tablaJPanel.addRow(new String[]{sintoma.toString(), categoria });
-                textFieldSintoma.setText("");
+                if(!name.equals("")){
+                    CrearSintoma crearSintoma = new CrearSintoma();
+                    Sintoma sintoma = crearSintoma.crear(name, categoria, sintomas);
+                    sintomas.add(sintoma);
+                    tablaJPanel.addRow(new String[]{sintoma.toString(), categoria });
+                    textFieldSintoma.setText("");
+                }
+
             } catch (Exception ex) {
                 System.out.println(ex.getMessage());
                 // mostrar mensaje en interfaz

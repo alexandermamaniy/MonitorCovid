@@ -34,7 +34,7 @@ public class DatosSintomas {
         } else {
             path = dir+separador+"src"+separador+nombrePaquete+separador+nombreArchivo;
         }
-        System.out.println(path);
+//        System.out.println(path);
         return path;
     }
 
