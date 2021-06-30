@@ -32,9 +32,9 @@ public class TablaJPanel extends JPanel {
         add(tableScollPanel);
     }
 
-    public void addRow(String[] row){
-        dataTable.addRow(row);
-    }
+//    public void addRow(String[] row){
+//        dataTable.addRow(row);
+//    }
 
     public void paintComponent(Graphics g){
         tableScollPanel.setBounds(0, 0, 453,300);
