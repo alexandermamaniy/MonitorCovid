@@ -24,6 +24,8 @@ public class RegistroJPanel extends JPanel implements ItemListener, ActionListen
     private final Sintomas sintomasPaciente;
     private final Registros registros;
     private final TablaJPanel tablaJPanel;
+    private final TablaSintomasJPanel tablaSintomasJPanel;
+
     GroupLabelsJPanel groupLabelsJPanel;
     JPanel group;
     private VentanaFrame frameRegistro;
@@ -49,6 +51,9 @@ public class RegistroJPanel extends JPanel implements ItemListener, ActionListen
         add(groupLabelsJPanel);
         tablaJPanel = new TablaJPanel(registros);
         add(tablaJPanel);
+
+        tablaSintomasJPanel = new TablaSintomasJPanel();
+        add(tablaSintomasJPanel);
         group = new JPanel();
     }
 
@@ -58,8 +63,11 @@ public class RegistroJPanel extends JPanel implements ItemListener, ActionListen
 
             String a = (String)(comboCategoriaSintoma.getSelectedItem());
             CrearSintomaRegistro crearSintomaRegistro = new CrearSintomaRegistro(sintomasMonitorDisponibles);
-            sintomasPaciente.add(crearSintomaRegistro.crear(a));
-            groupLabelsJPanel.renderizarSintomasSeleccionados(sintomasPaciente);
+            Sintoma s = crearSintomaRegistro.crear(a);
+            sintomasPaciente.add(s);
+//            groupLabelsJPanel.renderizarSintomasSeleccionados(sintomasPaciente);
+
+            tablaSintomasJPanel.addRowSintomas(sintomasPaciente);
         }
     }
 
@@ -70,6 +78,8 @@ public class RegistroJPanel extends JPanel implements ItemListener, ActionListen
         comboCategoriaSintoma.setBackground(Color.WHITE);
         buttonAgregarSintoma.setBounds(300, 100, 100,30);
         tablaJPanel.setBounds(70, 250, 453,300);
+        tablaSintomasJPanel.setBounds(600, 250, 453,300);
+
         groupLabelsJPanel.setBounds(70, 150, 600, 30);
 
     }
