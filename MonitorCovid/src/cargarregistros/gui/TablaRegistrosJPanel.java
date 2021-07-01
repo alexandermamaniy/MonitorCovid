@@ -32,7 +32,7 @@ public class TablaRegistrosJPanel extends JPanel {
         add(tableScollPanel);
     }
 
-    public void clear(){
+    private void clear(){
         int rowCount = dataTable.getRowCount();
         for (int i = rowCount - 1; i >= 0; i--) {
             dataTable.removeRow(i);
@@ -52,7 +52,7 @@ public class TablaRegistrosJPanel extends JPanel {
         }
     }
 
-    public void addRow(String[] row){
+    private void addRow(String[] row){
         dataTable.addRow(row);
     }
 

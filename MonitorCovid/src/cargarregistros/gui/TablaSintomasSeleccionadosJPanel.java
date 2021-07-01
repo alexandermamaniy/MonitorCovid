@@ -29,7 +29,6 @@ public class TablaSintomasSeleccionadosJPanel extends JPanel {
             dataTable.removeRow(i);
         }
     }
-
     public void addRowSintomas(Sintomas sintomasSeleccionados){
         clear();
         for (Sintoma s: sintomasSeleccionados){

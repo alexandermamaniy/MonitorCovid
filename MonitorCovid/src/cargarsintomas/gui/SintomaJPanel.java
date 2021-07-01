@@ -13,10 +13,8 @@ import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 
-public class SintomaJPanel extends JPanel implements ItemListener, ActionListener {
+public class SintomaJPanel extends JPanel implements ActionListener {
     private final JComboBox<String> comboCategoriaSintoma;
     private final JTextField textFieldSintoma;
     private final JButton buttonAgregarSintoma;
@@ -36,7 +34,6 @@ public class SintomaJPanel extends JPanel implements ItemListener, ActionListene
         add(jPanel1);
         comboCategoriaSintoma = new JComboBox<>();
         jPanel1.add(comboCategoriaSintoma);
-        comboCategoriaSintoma.addItemListener(this);
         Paquete paquete = new Paquete();
         for(String sintoma: paquete.obtenerClasesPaqueteSintomas() ){
             comboCategoriaSintoma.addItem(sintoma);
@@ -55,9 +52,6 @@ public class SintomaJPanel extends JPanel implements ItemListener, ActionListene
 
     }
 
-    public void itemStateChanged(ItemEvent e){
-
-    }
 
     public void paintComponent(Graphics g){
         super.paintComponent(g);
