@@ -22,7 +22,7 @@ public class CargarSintomas {
                 for(Sintoma s: datosSintomas.leerDatosSintomas()){
                     sintomas.add(s);
                 }
-            } catch (   Exception e){
+            } catch (Exception e){
                 e.printStackTrace();
             }
         }
