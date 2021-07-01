@@ -39,18 +39,22 @@ public class TablaSintomasJPanel extends JPanel {
         dataTable.addRow(row);
     }
 
-    public void addRowSintomas(Sintomas sintomasSeleccionados){
+    public void clear(){
 
         int rowCount = dataTable.getRowCount();
         for (int i = rowCount - 1; i >= 0; i--) {
             dataTable.removeRow(i);
         }
+    }
+
+    public void addRowSintomas(Sintomas sintomasSeleccionados){
+        clear();
         for (Sintoma s: sintomasSeleccionados){
             addRow(new String[]{ s.toString() });
         }
     }
     public void paintComponent(Graphics g){
         super.paintComponent(g);
-        tableScollPanel.setBounds(0, 0, 453,300);
+        tableScollPanel.setBounds(0, 0, 600,200);
     }
 }

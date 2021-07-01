@@ -4,6 +4,7 @@ import cargarregistros.utils.FormatoFecha;
 import cargarregistros.utils.FormatoSintomas;
 import monitor.Registro;
 import monitor.Registros;
+import monitor.Sintoma;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -32,11 +33,32 @@ public class TablaJPanel extends JPanel {
         add(tableScollPanel);
     }
 
-//    public void addRow(String[] row){
-//        dataTable.addRow(row);
-//    }
+    public void clear(){
+        int rowCount = dataTable.getRowCount();
+        for (int i = rowCount - 1; i >= 0; i--) {
+            dataTable.removeRow(i);
+        }
+
+    }
+
+    public void actualizarTabla(){
+        clear();
+        for (Registro r: registros){
+            String data = "";
+            System.out.println(r.getSintomas().toString());
+            FormatoFecha f = new FormatoFecha();
+            for (Sintoma s: r.getSintomas()){
+                data += s.toString() +", ";
+            }
+            addRow(new String[]{f.dateToString(r.getFecha()),  data });
+        }
+    }
+
+    public void addRow(String[] row){
+        dataTable.addRow(row);
+    }
 
     public void paintComponent(Graphics g){
-        tableScollPanel.setBounds(0, 0, 453,300);
+        tableScollPanel.setBounds(0, 0, 600,230);
     }
 }

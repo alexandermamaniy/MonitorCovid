@@ -16,7 +16,7 @@ public class VentanaFrame extends JFrame {
     public VentanaFrame(Sintomas sintomas) {
         Toolkit myScreen = Toolkit.getDefaultToolkit();
         Dimension size = myScreen.getScreenSize();
-        WIDTH = 1100;
+        WIDTH = 770;
         HEIGHT = 800;
         X = (size.width-WIDTH)/2;
         Y = (size.height-HEIGHT)/2;
@@ -46,7 +46,7 @@ public class VentanaFrame extends JFrame {
                 }
             }
         });
-        sintomaJPanel = new SintomaJPanel(sintomas);
+        sintomaJPanel = new SintomaJPanel(sintomas, this);
         add(sintomaJPanel);
         setVisible(true);
         synchronized(frame){

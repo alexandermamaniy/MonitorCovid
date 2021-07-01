@@ -34,6 +34,7 @@ public class TablaJPanel extends JPanel {
     }
 
     public void paintComponent(Graphics g){
-        tableScollPanel.setBounds(0, 0, 453,300);
+        super.paintComponent(g);
+        tableScollPanel.setBounds(0, 0, 600,300);
     }
 }

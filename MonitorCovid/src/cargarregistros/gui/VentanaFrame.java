@@ -15,7 +15,7 @@ public class VentanaFrame extends JFrame {
     public VentanaFrame(Sintomas sintomasMonitorDisponibles, Registros registros, Sintomas sintomasPaciente) {
         Toolkit myScreen = Toolkit.getDefaultToolkit();
         Dimension size = myScreen.getScreenSize();
-        WIDTH = 1100;
+        WIDTH = 770;
         HEIGHT = 800;
         X = (size.width-WIDTH)/2;
         Y = (size.height-HEIGHT)/2;
@@ -38,7 +38,6 @@ public class VentanaFrame extends JFrame {
                     frameRegistro.dispose();
                 } catch (Exception e){
                     System.out.println(e.getMessage());
-                    System.out.println("Error al guardar");
                 }
             }
         });
