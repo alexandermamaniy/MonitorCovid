@@ -23,7 +23,7 @@ public class CargarSintomas {
                     sintomas.add(s);
                 }
             } catch (   Exception e){
-                System.out.println(e.getMessage());
+                e.printStackTrace();
             }
         }
     }

@@ -1,5 +1,6 @@
 package cargarregistros.gui;
 
+import cargarregistros.utils.VentanaSincronizacion;
 import monitor.Registros;
 import monitor.Sintomas;
 
@@ -11,7 +12,7 @@ import java.awt.event.WindowEvent;
 public class VentanaFrame extends JFrame {
     private int WIDTH, HEIGHT, X, Y;
     private RegistroJPanel registroJPanel;
-
+//    final VentanaFrame frameRegistro = this;
     public VentanaFrame(Sintomas sintomasMonitorDisponibles, Registros registros, Sintomas sintomasPaciente) {
         Toolkit myScreen = Toolkit.getDefaultToolkit();
         Dimension size = myScreen.getScreenSize();
@@ -23,35 +24,25 @@ public class VentanaFrame extends JFrame {
         setTitle("Monitor Covid Registros");
         setBounds(X, Y, WIDTH, HEIGHT);
         setResizable(false);
-
-        final VentanaFrame frameRegistro = this;
-
+        registroJPanel = new RegistroJPanel(sintomasMonitorDisponibles, registros, sintomasPaciente, this);
+        add(registroJPanel);
         this.addWindowListener(new WindowAdapter(){
-
             @Override
             public void windowClosing(WindowEvent we){
-                try {
-                    synchronized(frameRegistro){
-                        frameRegistro.notify();
-                    }
-                    frameRegistro.setVisible(false);
-                    frameRegistro.dispose();
-                } catch (Exception e){
-                    System.out.println(e.getMessage());
-                }
+                setVisible(false);
             }
         });
-        registroJPanel = new RegistroJPanel(sintomasMonitorDisponibles, registros, sintomasPaciente, this);
-
-        add(registroJPanel);
-
         setVisible(true);
-        synchronized(frameRegistro){
-            try{
-                frameRegistro.wait();
-            }
-            catch(InterruptedException ex){
-            }
+    }
+
+    @Override
+    public void setVisible(boolean b) {
+        super.setVisible(b);
+        VentanaSincronizacion ventanaSincronizacion = new VentanaSincronizacion();
+        if (b) {
+            ventanaSincronizacion.detener(this);
+        } else {
+            ventanaSincronizacion.continuar(this);
         }
     }
 }

@@ -3,6 +3,7 @@ package cargarregistros.gui;
 
 import cargarregistros.datos.DatosRegistros;
 import cargarregistros.utils.CrearSintomaRegistro;
+import cargarregistros.utils.FormatoFecha;
 import monitor.Registro;
 import monitor.Registros;
 import monitor.Sintoma;
@@ -20,7 +21,7 @@ import java.awt.event.ItemListener;
 import java.util.Date;
 
 public class RegistroJPanel extends JPanel implements ItemListener, ActionListener {
-//    private final JLabel title;
+    private final JLabel labelFecha;
     private final JComboBox<String> comboCategoriaSintoma;
     private final JButton buttonAgregarSintoma;
     private final Sintomas sintomasMonitorDisponibles;
@@ -52,9 +53,9 @@ public class RegistroJPanel extends JPanel implements ItemListener, ActionListen
 
         jPanel2.setBorder(bordejpanel2);
         add(jPanel2);
-
-//        title = new JLabel("Sintomas");
-//        add(title);
+        FormatoFecha formatoFecha = new FormatoFecha();
+        labelFecha = new JLabel("Fecha registro: "+ formatoFecha.dateToString(new Date()) );
+        jPanel1.add(labelFecha);
         comboCategoriaSintoma = new JComboBox<>();
         jPanel1.add(comboCategoriaSintoma);
 
@@ -71,7 +72,6 @@ public class RegistroJPanel extends JPanel implements ItemListener, ActionListen
 
         tablaSintomasJPanel = new TablaSintomasJPanel();
         jPanel1.add(tablaSintomasJPanel);
-//        group = new JPanel();
 
         salir = new JButton("Terminar");
         salir.addActionListener(this);
@@ -93,11 +93,11 @@ public class RegistroJPanel extends JPanel implements ItemListener, ActionListen
 
     public void paintComponent(Graphics g){
         super.paintComponent(g);
-//        title.setBounds(70, 50, 150, 40);
         jPanel1.setBounds(40, 20, 670,330);
         comboCategoriaSintoma.setBounds(35, 35, 200,30);
         comboCategoriaSintoma.setBackground(Color.WHITE);
-        buttonAgregarSintoma.setBounds(300, 35, 100,30);
+        labelFecha.setBounds(280, 35, 300,30);
+        buttonAgregarSintoma.setBounds(530, 35, 100,30);
         tablaSintomasJPanel.setBounds(35, 100, 600,200);
 
 
@@ -110,16 +110,21 @@ public class RegistroJPanel extends JPanel implements ItemListener, ActionListen
         Object botonPulsado = e.getSource();
 
         if (botonPulsado == buttonAgregarSintoma) {
-            try {
-                DatosRegistros datosRegistros = new DatosRegistros();
-                registros.push(new Registro(new Date(), sintomasPaciente));
-                datosRegistros.guardarDatosRegistros(registros);
-                tablaSintomasJPanel.clear();
-                tablaJPanel.actualizarTabla();
-                sintomasPaciente = new Sintomas();
-            } catch (Exception ex) {
-                System.out.println(ex.getMessage());
-                // mostrar mensaje en interfaz
+            int i=0;
+            for(Sintoma s: sintomasPaciente){
+                i++;
+            }
+            if (i>0){
+                try {
+                    DatosRegistros datosRegistros = new DatosRegistros();
+                    registros.push(new Registro(new Date(), sintomasPaciente));
+                    datosRegistros.guardarDatosRegistros(registros);
+                    tablaSintomasJPanel.clear();
+                    tablaJPanel.actualizarTabla();
+                    sintomasPaciente = new Sintomas();
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
             }
         } else  if ( botonPulsado == salir){
             try {
@@ -129,23 +134,8 @@ public class RegistroJPanel extends JPanel implements ItemListener, ActionListen
                 frameRegistro.setVisible(false);
                 frameRegistro.dispose();
             } catch (Exception ex) {
-                System.out.println(ex.getMessage());
+                ex.printStackTrace();
             }
         }
-//        if (botonPulsado == buttonAgregarSintoma) {
-//            try {
-//                DatosRegistros datosRegistros = new DatosRegistros();
-//                registros.push(new Registro(new Date(), sintomasPaciente));
-//                datosRegistros.guardarDatosRegistros(registros);
-//                synchronized(frameRegistro){
-//                    frameRegistro.notify();
-//                }
-//                frameRegistro.setVisible(false);
-//                frameRegistro.dispose();
-//            } catch (Exception ex) {
-//                System.out.println(ex.getMessage());
-//                // mostrar mensaje en interfaz
-//            }
-//        }
     }
 }

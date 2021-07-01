@@ -41,8 +41,7 @@ public class VentanaFrame extends JFrame {
                     frame.setVisible(false);
                     frame.dispose();
                 } catch (IOException e){
-                    System.out.println(e.getMessage());
-                    System.out.println("Error al guardar");
+                    e.printStackTrace();
                 }
             }
         });

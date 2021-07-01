@@ -94,8 +94,7 @@ public class SintomaJPanel extends JPanel implements ItemListener, ActionListene
                 }
 
             } catch (Exception ex) {
-                System.out.println(ex.getMessage());
-                // mostrar mensaje en interfaz
+                ex.printStackTrace();
             }
         } else if (botonPulsado == terminar){
             try {
@@ -107,8 +106,7 @@ public class SintomaJPanel extends JPanel implements ItemListener, ActionListene
                 frameSintomas.setVisible(false);
                 frameSintomas.dispose();
             } catch (IOException ex){
-                System.out.println(ex.getMessage());
-                System.out.println("Error al guardar");
+                ex.printStackTrace();
             }
         }
     }

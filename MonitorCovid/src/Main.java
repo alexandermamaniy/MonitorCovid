@@ -7,5 +7,4 @@ public class Main {
         monitor.monitorear();
         System.out.println("resultado: " + monitor.getResultado());
     }
-
 }

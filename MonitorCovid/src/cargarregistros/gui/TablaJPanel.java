@@ -26,7 +26,7 @@ public class TablaJPanel extends JPanel {
         FormatoFecha formatoFecha = new FormatoFecha();
         FormatoSintomas formatoSintomas = new FormatoSintomas();
         for(Registro r: registros){
-            String fecha = formatoFecha.dateToString(r.getFecha());
+            String fecha = formatoFecha.dateAndHourToString(r.getFecha());
             String sintomasPaciente = formatoSintomas.formatoSintomas(r.getSintomas());
             dataTable.addRow(new Object[]{fecha, sintomasPaciente });
         }
@@ -45,12 +45,11 @@ public class TablaJPanel extends JPanel {
         clear();
         for (Registro r: registros){
             String data = "";
-            System.out.println(r.getSintomas().toString());
             FormatoFecha f = new FormatoFecha();
             for (Sintoma s: r.getSintomas()){
                 data += s.toString() +", ";
             }
-            addRow(new String[]{f.dateToString(r.getFecha()),  data });
+            addRow(new String[]{f.dateAndHourToString(r.getFecha()),  data });
         }
     }
 

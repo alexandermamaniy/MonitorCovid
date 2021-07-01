@@ -24,11 +24,11 @@ public class Paquete {
                     Class.forName(nombrePaquete+"."+nombreClase).asSubclass(sintomaClass);
                     listaClasesPaquete.add(nombreClase);
                 } catch ( Exception e) {
-                    System.out.println("Clase "+ clase.getName()+" descartada.");
+                    e.printStackTrace();
                 }
             }
         } catch (IOException e){
-            System.out.println("Paquete inexistente");
+            e.printStackTrace();
         }
         return listaClasesPaquete;
     }
