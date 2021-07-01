@@ -10,16 +10,15 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
-public class TablaJPanel extends JPanel {
-    JTable table;
-    JScrollPane tableScollPanel;
-    DefaultTableModel dataTable;
-    Registros registros;
+public class TablaRegistrosJPanel extends JPanel {
+    private final JScrollPane tableScollPanel;
+    private final DefaultTableModel dataTable;
+    private final Registros registros;
 
-    public TablaJPanel(Registros registros){
+    public TablaRegistrosJPanel(Registros registros){
         this.registros = registros;
         dataTable = new DefaultTableModel();
-        table = new JTable(dataTable);
+        JTable table = new JTable(dataTable);
         tableScollPanel = new JScrollPane(table);
         dataTable.addColumn("Fecha");
         dataTable.addColumn("Sintomas");

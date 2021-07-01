@@ -4,9 +4,7 @@ import monitor.Sintoma;
 import monitor.Sintomas;
 
 public class ValidadorSintoma {
-
-    Sintomas sintomas;
-
+    private final Sintomas sintomas;
     public ValidadorSintoma(Sintomas sintomas){
         this.sintomas = sintomas;
     }

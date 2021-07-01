@@ -1,7 +1,7 @@
 package cargarsintomas;
 
 import cargarsintomas.datos.DatosSintomas;
-import cargarsintomas.gui.VentanaFrame;
+import cargarsintomas.gui.VentanaSintomasFrame;
 import monitor.Sintoma;
 import monitor.Sintomas;
 
@@ -29,7 +29,7 @@ public class CargarSintomas {
     }
 
     private void cargarSintomasApp() {
-        new VentanaFrame(sintomas);
+        new VentanaSintomasFrame(sintomas);
     }
 
     public Sintomas getSintomas() {

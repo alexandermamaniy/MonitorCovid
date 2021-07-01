@@ -7,16 +7,13 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
-public class TablaJPanel extends JPanel {
-    JTable table;
-    JScrollPane tableScollPanel;
-    DefaultTableModel dataTable;
-    Sintomas sintomas;
+public class TablaSintomasJPanel extends JPanel {
+    private final JScrollPane tableScollPanel;
+    private final DefaultTableModel dataTable;
 
-    public TablaJPanel(Sintomas sintomas){
-        this.sintomas = sintomas;
+    public TablaSintomasJPanel(Sintomas sintomas){
         dataTable = new DefaultTableModel();
-        table = new JTable(dataTable);
+        JTable table = new JTable(dataTable);
         tableScollPanel = new JScrollPane(table);
         dataTable.addColumn("Nombre sintoma");
         dataTable.addColumn("Categoria");

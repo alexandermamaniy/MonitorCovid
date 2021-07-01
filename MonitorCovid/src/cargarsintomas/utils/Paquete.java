@@ -41,6 +41,7 @@ public class Paquete {
             URL url = urls.nextElement();
             dir = new File(url.getFile());
         }
+        assert dir != null;
         return  dir.listFiles();
     }
 }

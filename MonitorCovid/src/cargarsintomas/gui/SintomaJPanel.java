@@ -21,12 +21,12 @@ public class SintomaJPanel extends JPanel implements ItemListener, ActionListene
     private final JTextField textFieldSintoma;
     private final JButton buttonAgregarSintoma;
     private final Sintomas sintomas;
-    private final TablaJPanel tablaJPanel;
-    JPanel jPanel1;
-    private final VentanaFrame frameSintomas;
+    private final TablaSintomasJPanel tablaSintomasJPanel;
+    private final JPanel jPanel1;
+    private final VentanaSintomasFrame frameSintomas;
     private final JButton terminar;
 
-    public SintomaJPanel(Sintomas sintomas,VentanaFrame frameSintomas ){
+    public SintomaJPanel(Sintomas sintomas, VentanaSintomasFrame frameSintomas ){
         this.sintomas = sintomas;
         this.frameSintomas = frameSintomas;
         jPanel1 = new JPanel();
@@ -46,8 +46,8 @@ public class SintomaJPanel extends JPanel implements ItemListener, ActionListene
         buttonAgregarSintoma = new JButton("Registrar");
         buttonAgregarSintoma.addActionListener(this);
         jPanel1.add(buttonAgregarSintoma);
-        tablaJPanel = new TablaJPanel(sintomas);
-        jPanel1.add(tablaJPanel);
+        tablaSintomasJPanel = new TablaSintomasJPanel(sintomas);
+        jPanel1.add(tablaSintomasJPanel);
 
         terminar = new JButton("Terminar");
         terminar.addActionListener(this);
@@ -66,7 +66,7 @@ public class SintomaJPanel extends JPanel implements ItemListener, ActionListene
         comboCategoriaSintoma.setBounds(230, 35, 110,30);
         comboCategoriaSintoma.setBackground(Color.WHITE);
         buttonAgregarSintoma.setBounds(360, 35, 100,30);
-        tablaJPanel.setBounds(35, 100, 600,350);
+        tablaSintomasJPanel.setBounds(35, 100, 600,350);
         terminar.setBounds(610, 700, 100,30);
     }
 
@@ -80,7 +80,7 @@ public class SintomaJPanel extends JPanel implements ItemListener, ActionListene
                     CrearSintoma crearSintoma = new CrearSintoma();
                     Sintoma sintoma = crearSintoma.crear(name, categoria, sintomas);
                     sintomas.add(sintoma);
-                    tablaJPanel.addRow(new String[]{sintoma.toString(), categoria });
+                    tablaSintomasJPanel.addRow(new String[]{sintoma.toString(), categoria });
                     textFieldSintoma.setText("");
                     (new DatosSintomas()).guardarDatosSintomas(sintomas);
                 }

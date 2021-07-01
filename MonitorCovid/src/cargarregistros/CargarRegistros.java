@@ -1,7 +1,7 @@
 package cargarregistros;
 
 import cargarregistros.datos.DatosRegistros;
-import cargarregistros.gui.VentanaFrame;
+import cargarregistros.gui.VentanaJFrame;
 import monitor.Registro;
 import monitor.Registros;
 import monitor.Sintomas;
@@ -33,7 +33,7 @@ public class CargarRegistros {
     }
 
     private void cargarSintomasApp(Sintomas sintomasMonitorDisponibles, Sintomas sintomasPaciente) {
-        new VentanaFrame(sintomasMonitorDisponibles, registros, sintomasPaciente);
+        new VentanaJFrame(sintomasMonitorDisponibles, registros, sintomasPaciente);
     }
 
     public Registro getRegistro() {

@@ -24,17 +24,16 @@ public class RegistroJPanel extends JPanel implements ItemListener, ActionListen
     private final JComboBox<String> comboCategoriaSintoma;
     private final JButton buttonAgregarSintoma;
     private final Sintomas sintomasMonitorDisponibles;
-    private  Sintomas sintomasPaciente;
     private final Registros registros;
-    private final TablaJPanel tablaJPanel;
-    private final TablaSintomasJPanel tablaSintomasJPanel;
-    JPanel jPanel1;
-    JPanel jPanel2;
-    private final VentanaFrame frameRegistro;
+    private final TablaRegistrosJPanel tablaRegistrosJPanel;
+    private final TablaSintomasSeleccionadosJPanel tablaSintomasSeleccionadosJPanel;
+    private final JPanel jPanel1;
+    private final JPanel jPanel2;
+    private final VentanaJFrame frameRegistro;
     private final JButton salir;
+    private Sintomas sintomasPaciente;
 
-    public RegistroJPanel(Sintomas sintomasMonitorDisponibles, Registros registros, Sintomas sintomasPaciente, VentanaFrame frameRegistro){
-
+    public RegistroJPanel(Sintomas sintomasMonitorDisponibles, Registros registros, Sintomas sintomasPaciente, VentanaJFrame frameRegistro){
         this.sintomasMonitorDisponibles = sintomasMonitorDisponibles;
         this.sintomasPaciente = sintomasPaciente;
         this.registros = registros;
@@ -66,11 +65,11 @@ public class RegistroJPanel extends JPanel implements ItemListener, ActionListen
         buttonAgregarSintoma = new JButton("Registrar");
         buttonAgregarSintoma.addActionListener(this);
         jPanel1.add(buttonAgregarSintoma);
-        tablaJPanel = new TablaJPanel(registros);
-        jPanel2.add(tablaJPanel);
+        tablaRegistrosJPanel = new TablaRegistrosJPanel(registros);
+        jPanel2.add(tablaRegistrosJPanel);
 
-        tablaSintomasJPanel = new TablaSintomasJPanel();
-        jPanel1.add(tablaSintomasJPanel);
+        tablaSintomasSeleccionadosJPanel = new TablaSintomasSeleccionadosJPanel();
+        jPanel1.add(tablaSintomasSeleccionadosJPanel);
 
         salir = new JButton("Terminar");
         salir.addActionListener(this);
@@ -85,7 +84,7 @@ public class RegistroJPanel extends JPanel implements ItemListener, ActionListen
             CrearSintomaRegistro crearSintomaRegistro = new CrearSintomaRegistro(sintomasMonitorDisponibles);
             Sintoma s = crearSintomaRegistro.crear(a);
             sintomasPaciente.add(s);
-            tablaSintomasJPanel.addRowSintomas(sintomasPaciente);
+            tablaSintomasSeleccionadosJPanel.addRowSintomas(sintomasPaciente);
         }
     }
 
@@ -96,11 +95,11 @@ public class RegistroJPanel extends JPanel implements ItemListener, ActionListen
         comboCategoriaSintoma.setBackground(Color.WHITE);
         labelFecha.setBounds(280, 35, 300,30);
         buttonAgregarSintoma.setBounds(530, 35, 100,30);
-        tablaSintomasJPanel.setBounds(35, 100, 600,200);
+        tablaSintomasSeleccionadosJPanel.setBounds(35, 100, 600,200);
 
 
         jPanel2.setBounds(40, 370, 670,300);
-        tablaJPanel.setBounds(35, 35, 600,230);
+        tablaRegistrosJPanel.setBounds(35, 35, 600,230);
         salir.setBounds(610, 700, 100,30);
     }
 
@@ -117,8 +116,8 @@ public class RegistroJPanel extends JPanel implements ItemListener, ActionListen
                     DatosRegistros datosRegistros = new DatosRegistros();
                     registros.push(new Registro(new Date(), sintomasPaciente));
                     datosRegistros.guardarDatosRegistros(registros);
-                    tablaSintomasJPanel.clear();
-                    tablaJPanel.actualizarTabla();
+                    tablaSintomasSeleccionadosJPanel.clear();
+                    tablaRegistrosJPanel.actualizarTabla();
                     sintomasPaciente = new Sintomas();
                 } catch (Exception ex) {
                     ex.printStackTrace();
