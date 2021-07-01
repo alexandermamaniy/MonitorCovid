@@ -1,6 +1,7 @@
 package cargarsintomas.gui;
 
 import cargarsintomas.datos.DatosSintomas;
+import cargarsintomas.utils.VentanaSincronizacion;
 import monitor.Sintomas;
 
 import javax.swing.*;
@@ -24,36 +25,27 @@ public class VentanaFrame extends JFrame {
         setTitle("Monitor Covid Sintomas");
         setBounds(X, Y, WIDTH, HEIGHT);
         setResizable(false);
-
-//        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        final VentanaFrame frame = this;
+        sintomaJPanel = new SintomaJPanel(sintomas, this);
+        add(sintomaJPanel);
+        setVisible(true);
 
         this.addWindowListener(new WindowAdapter(){
             @Override
             public void windowClosing(WindowEvent we){
-                try {
-                    // llevar al paquete cargarSintomas
-                    (new DatosSintomas()).guardarDatosSintomas(sintomas);
-                    synchronized(frame){
-                        frame.notify();
-                    }
-                    frame.setVisible(false);
-                    frame.dispose();
-                } catch (IOException e){
-                    e.printStackTrace();
-                }
+                setVisible(false);
             }
         });
-        sintomaJPanel = new SintomaJPanel(sintomas, this);
-        add(sintomaJPanel);
-        setVisible(true);
-        synchronized(frame){
-            try{
-                frame.wait();
-            }
-            catch(InterruptedException ex){
-            }
+
+    }
+
+    @Override
+    public void setVisible(boolean b) {
+        super.setVisible(b);
+        VentanaSincronizacion ventanaSincronizacion = new VentanaSincronizacion();
+        if (b) {
+            ventanaSincronizacion.detener(this);
+        } else {
+            ventanaSincronizacion.continuar(this);
         }
     }
 }

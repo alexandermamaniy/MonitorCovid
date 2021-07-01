@@ -4,6 +4,7 @@ package cargarregistros.gui;
 import cargarregistros.datos.DatosRegistros;
 import cargarregistros.utils.CrearSintomaRegistro;
 import cargarregistros.utils.FormatoFecha;
+import cargarregistros.utils.VentanaSincronizacion;
 import monitor.Registro;
 import monitor.Registros;
 import monitor.Sintoma;
@@ -82,7 +83,6 @@ public class RegistroJPanel extends JPanel implements ItemListener, ActionListen
     public void itemStateChanged(ItemEvent e){
 
         if (e.getSource()== comboCategoriaSintoma && e.getStateChange() == ItemEvent.DESELECTED){
-
             String a = (String)(comboCategoriaSintoma.getSelectedItem());
             CrearSintomaRegistro crearSintomaRegistro = new CrearSintomaRegistro(sintomasMonitorDisponibles);
             Sintoma s = crearSintomaRegistro.crear(a);
@@ -127,15 +127,7 @@ public class RegistroJPanel extends JPanel implements ItemListener, ActionListen
                 }
             }
         } else  if ( botonPulsado == salir){
-            try {
-                synchronized(frameRegistro){
-                    frameRegistro.notify();
-                }
-                frameRegistro.setVisible(false);
-                frameRegistro.dispose();
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
+            frameRegistro.setVisible(false);
         }
     }
 }

@@ -91,23 +91,14 @@ public class SintomaJPanel extends JPanel implements ItemListener, ActionListene
                     sintomas.add(sintoma);
                     tablaJPanel.addRow(new String[]{sintoma.toString(), categoria });
                     textFieldSintoma.setText("");
+                    (new DatosSintomas()).guardarDatosSintomas(sintomas);
                 }
 
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
         } else if (botonPulsado == terminar){
-            try {
-                // llevar al paquete cargarSintomas
-                (new DatosSintomas()).guardarDatosSintomas(sintomas);
-                synchronized(frameSintomas){
-                    frameSintomas.notify();
-                }
-                frameSintomas.setVisible(false);
-                frameSintomas.dispose();
-            } catch (IOException ex){
-                ex.printStackTrace();
-            }
+            frameSintomas.setVisible(false);
         }
     }
 }
