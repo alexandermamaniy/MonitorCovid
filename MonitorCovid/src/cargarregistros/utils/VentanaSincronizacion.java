@@ -3,7 +3,11 @@ package cargarregistros.utils;
 import cargarregistros.gui.VentanaFrame;
 
 public class VentanaSincronizacion {
-    public void detener(VentanaFrame ventanaFrame){
+    final VentanaFrame ventanaFrame;
+    public VentanaSincronizacion(VentanaFrame ventanaFrame){
+        this.ventanaFrame = ventanaFrame;
+    }
+    public void detener(){
         synchronized(ventanaFrame){
             try{
                 ventanaFrame.wait();
@@ -14,7 +18,7 @@ public class VentanaSincronizacion {
         }
     }
 
-    public void continuar(VentanaFrame ventanaFrame){
+    public void continuar(){
         try {
             synchronized(ventanaFrame){
                 ventanaFrame.notify();

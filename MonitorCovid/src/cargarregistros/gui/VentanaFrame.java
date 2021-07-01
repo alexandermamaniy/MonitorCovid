@@ -10,21 +10,17 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 public class VentanaFrame extends JFrame {
-    private int WIDTH, HEIGHT, X, Y;
-    private RegistroJPanel registroJPanel;
-//    final VentanaFrame frameRegistro = this;
     public VentanaFrame(Sintomas sintomasMonitorDisponibles, Registros registros, Sintomas sintomasPaciente) {
         Toolkit myScreen = Toolkit.getDefaultToolkit();
         Dimension size = myScreen.getScreenSize();
-        WIDTH = 770;
-        HEIGHT = 800;
-        X = (size.width-WIDTH)/2;
-        Y = (size.height-HEIGHT)/2;
-
+        int WIDTH = 770;
+        int HEIGHT = 800;
+        int x = (size.width - WIDTH) / 2;
+        int y = (size.height - HEIGHT) / 2;
         setTitle("Monitor Covid Registros");
-        setBounds(X, Y, WIDTH, HEIGHT);
+        setBounds(x, y, WIDTH, HEIGHT);
         setResizable(false);
-        registroJPanel = new RegistroJPanel(sintomasMonitorDisponibles, registros, sintomasPaciente, this);
+        RegistroJPanel registroJPanel = new RegistroJPanel(sintomasMonitorDisponibles, registros, sintomasPaciente, this);
         add(registroJPanel);
         this.addWindowListener(new WindowAdapter(){
             @Override
@@ -38,11 +34,11 @@ public class VentanaFrame extends JFrame {
     @Override
     public void setVisible(boolean b) {
         super.setVisible(b);
-        VentanaSincronizacion ventanaSincronizacion = new VentanaSincronizacion();
+        VentanaSincronizacion ventanaSincronizacion = new VentanaSincronizacion(this);
         if (b) {
-            ventanaSincronizacion.detener(this);
+            ventanaSincronizacion.detener();
         } else {
-            ventanaSincronizacion.continuar(this);
+            ventanaSincronizacion.continuar();
         }
     }
 }

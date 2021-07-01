@@ -15,30 +15,25 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.io.IOException;
 
 public class SintomaJPanel extends JPanel implements ItemListener, ActionListener {
-//    private final JLabel title;
     private final JComboBox<String> comboCategoriaSintoma;
     private final JTextField textFieldSintoma;
     private final JButton buttonAgregarSintoma;
     private final Sintomas sintomas;
     private final TablaJPanel tablaJPanel;
     JPanel jPanel1;
-    private VentanaFrame frameSintomas;
+    private final VentanaFrame frameSintomas;
     private final JButton terminar;
 
     public SintomaJPanel(Sintomas sintomas,VentanaFrame frameSintomas ){
         this.sintomas = sintomas;
         this.frameSintomas = frameSintomas;
-//        title = new JLabel("Sintomas");
-//        add(title);
         jPanel1 = new JPanel();
         Border bordejpanel = new TitledBorder(new EtchedBorder(), "Registro de Sintomas");
 
         jPanel1.setBorder(bordejpanel);
         add(jPanel1);
-
         comboCategoriaSintoma = new JComboBox<>();
         jPanel1.add(comboCategoriaSintoma);
         comboCategoriaSintoma.addItemListener(this);
@@ -46,7 +41,6 @@ public class SintomaJPanel extends JPanel implements ItemListener, ActionListene
         for(String sintoma: paquete.obtenerClasesPaqueteSintomas() ){
             comboCategoriaSintoma.addItem(sintoma);
         }
-
         textFieldSintoma = new JTextField();
         jPanel1.add(textFieldSintoma);
         buttonAgregarSintoma = new JButton("Registrar");
@@ -67,13 +61,10 @@ public class SintomaJPanel extends JPanel implements ItemListener, ActionListene
 
     public void paintComponent(Graphics g){
         super.paintComponent(g);
-//        title.setBounds(300, 50, 150, 40);
-
         jPanel1.setBounds(40, 20, 670,650);
         textFieldSintoma.setBounds(35, 35,170,30);
         comboCategoriaSintoma.setBounds(230, 35, 110,30);
         comboCategoriaSintoma.setBackground(Color.WHITE);
-
         buttonAgregarSintoma.setBounds(360, 35, 100,30);
         tablaJPanel.setBounds(35, 100, 600,350);
         terminar.setBounds(610, 700, 100,30);
@@ -93,7 +84,6 @@ public class SintomaJPanel extends JPanel implements ItemListener, ActionListene
                     textFieldSintoma.setText("");
                     (new DatosSintomas()).guardarDatosSintomas(sintomas);
                 }
-
             } catch (Exception ex) {
                 ex.printStackTrace();
             }

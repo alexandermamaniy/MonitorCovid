@@ -15,7 +15,6 @@ public class TablaJPanel extends JPanel {
 
     public TablaJPanel(Sintomas sintomas){
         this.sintomas = sintomas;
-
         dataTable = new DefaultTableModel();
         table = new JTable(dataTable);
         tableScollPanel = new JScrollPane(table);

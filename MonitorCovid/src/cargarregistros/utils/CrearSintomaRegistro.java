@@ -8,7 +8,7 @@ import java.util.Map;
 
 public class CrearSintomaRegistro {
 
-    private Map<String, Sintoma> mapSintomas;
+    private final Map<String, Sintoma> mapSintomas;
 
     public CrearSintomaRegistro(Sintomas sintomas){
         mapSintomas = new HashMap<>();

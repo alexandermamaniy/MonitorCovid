@@ -6,12 +6,9 @@ import java.io.*;
 
 public class DatosRegistros {
 
-    private final String nombreArchivo = "registros.dat";
-    private final String nombrePaquete = "cargarregistros";
-
     private String getPath(){
         File miDir = new File (".");
-        String dir="", path="", separador = System.getProperty("file.separator");
+        String dir="", path, separador = System.getProperty("file.separator");
         try {
             dir= miDir.getCanonicalPath();
         }
@@ -22,16 +19,20 @@ public class DatosRegistros {
         boolean esDesarrollo = false;
         File file2 = new File(dir);
         String[] a = file2.list();
-        for(int i=0; i<a.length; i++){
-            if(a[i].equals("src")){
-                esDesarrollo=true;
+        assert a != null;
+        for (String s : a) {
+            if (s.equals("src")) {
+                esDesarrollo = true;
+                break;
             }
         }
 
+        String nombreArchivo = "registros.dat";
+        String nombrePaquete = "cargarregistros";
         if ( !esDesarrollo ){
-            path = dir+separador+nombrePaquete+separador+nombreArchivo;
+            path = dir+separador+ nombrePaquete +separador+ nombreArchivo;
         } else {
-            path = dir+separador+"src"+separador+nombrePaquete+separador+nombreArchivo;
+            path = dir+separador+"src"+separador+ nombrePaquete +separador+ nombreArchivo;
         }
         return path;
     }

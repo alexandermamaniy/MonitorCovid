@@ -44,12 +44,12 @@ public class TablaJPanel extends JPanel {
     public void actualizarTabla(){
         clear();
         for (Registro r: registros){
-            String data = "";
+            StringBuilder data = new StringBuilder();
             FormatoFecha f = new FormatoFecha();
             for (Sintoma s: r.getSintomas()){
-                data += s.toString() +", ";
+                data.append(s.toString()).append(", ");
             }
-            addRow(new String[]{f.dateAndHourToString(r.getFecha()),  data });
+            addRow(new String[]{f.dateAndHourToString(r.getFecha()), data.toString()});
         }
     }
 

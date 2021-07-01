@@ -10,7 +10,7 @@ import java.util.Date;
 
 public class CargarRegistros {
 
-    private Sintomas sintomas;
+    private final Sintomas sintomas;
     private Registros registros;
 
     public CargarRegistros(Sintomas sintomas) {
@@ -41,5 +41,4 @@ public class CargarRegistros {
         cargarSintomasApp(sintomas, sintomasPaciente);
         return new Registro(new Date(),sintomasPaciente);
     }
-
 }

@@ -4,7 +4,12 @@ package cargarsintomas.utils;
 import cargarsintomas.gui.VentanaFrame;
 
 public class VentanaSincronizacion {
-    public void detener(VentanaFrame ventanaFrame){
+    private final VentanaFrame ventanaFrame;
+    public VentanaSincronizacion(VentanaFrame ventanaFrame){
+        this.ventanaFrame = ventanaFrame;
+    }
+
+    public void detener(){
         synchronized(ventanaFrame){
             try{
                 ventanaFrame.wait();
@@ -15,7 +20,7 @@ public class VentanaSincronizacion {
         }
     }
 
-    public void continuar(VentanaFrame ventanaFrame){
+    public void continuar(){
         try {
             synchronized(ventanaFrame){
                 ventanaFrame.notify();

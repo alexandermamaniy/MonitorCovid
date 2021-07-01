@@ -5,10 +5,10 @@ import monitor.Sintomas;
 
 public class FormatoSintomas {
     public String formatoSintomas(Sintomas sintomas){
-        String formato = "";
+        StringBuilder formato = new StringBuilder();
         for(Sintoma s: sintomas){
-            formato += s.toString()+", ";
+            formato.append(s.toString()).append(", ");
         }
-        return formato;
+        return formato.toString();
     }
 }

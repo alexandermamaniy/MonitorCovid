@@ -1,10 +1,8 @@
 package cargarregistros.gui;
 
-
 import cargarregistros.datos.DatosRegistros;
 import cargarregistros.utils.CrearSintomaRegistro;
 import cargarregistros.utils.FormatoFecha;
-import cargarregistros.utils.VentanaSincronizacion;
 import monitor.Registro;
 import monitor.Registros;
 import monitor.Sintoma;
@@ -32,7 +30,7 @@ public class RegistroJPanel extends JPanel implements ItemListener, ActionListen
     private final TablaSintomasJPanel tablaSintomasJPanel;
     JPanel jPanel1;
     JPanel jPanel2;
-    private VentanaFrame frameRegistro;
+    private final VentanaFrame frameRegistro;
     private final JButton salir;
 
     public RegistroJPanel(Sintomas sintomasMonitorDisponibles, Registros registros, Sintomas sintomasPaciente, VentanaFrame frameRegistro){
@@ -111,7 +109,7 @@ public class RegistroJPanel extends JPanel implements ItemListener, ActionListen
 
         if (botonPulsado == buttonAgregarSintoma) {
             int i=0;
-            for(Sintoma s: sintomasPaciente){
+            for(Sintoma ignored : sintomasPaciente){
                 i++;
             }
             if (i>0){

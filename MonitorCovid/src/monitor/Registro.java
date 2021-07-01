@@ -1,7 +1,5 @@
 package monitor;
 
-import monitor.Sintomas;
-
 import java.io.Serializable;
 import java.util.Date;
 
