@@ -5,8 +5,6 @@ import cargarsintomas.gui.VentanaSintomasFrame;
 import monitor.Sintoma;
 import monitor.Sintomas;
 
-import java.io.IOException;
-
 public class CargarSintomas {
 
     private Sintomas sintomas;
@@ -20,14 +18,8 @@ public class CargarSintomas {
         DatosSintomas datosSintomas = new DatosSintomas();
         sintomas = new Sintomas();
         if(datosSintomas.existeDatosSintomas()){
-            try {
-                for(Sintoma s: datosSintomas.leerDatosSintomas()){
-                    sintomas.add(s);
-                }
-            } catch (ClassNotFoundException e){
-                e.printStackTrace();
-            } catch (IOException e){
-                e.printStackTrace();
+            for(Sintoma s: datosSintomas.leerDatosSintomas()){
+                sintomas.add(s);
             }
         }
     }

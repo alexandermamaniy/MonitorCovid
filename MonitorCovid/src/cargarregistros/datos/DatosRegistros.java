@@ -37,10 +37,17 @@ public class DatosRegistros {
         return path;
     }
 
-    public Registros leerDatosRegistros() throws IOException, ClassNotFoundException {
-        ObjectInputStream file = new ObjectInputStream(new FileInputStream(getPath()));
-        Registros registros = (Registros) file.readObject();
-        file.close();
+    public Registros leerDatosRegistros(){
+        Registros registros = null;
+        try {
+            ObjectInputStream file = new ObjectInputStream(new FileInputStream(getPath()));
+            registros = (Registros) file.readObject();
+            file.close();
+        } catch (IOException e){
+            e.printStackTrace();
+        } catch (ClassNotFoundException e){
+            e.printStackTrace();
+        }
         return registros;
     }
 

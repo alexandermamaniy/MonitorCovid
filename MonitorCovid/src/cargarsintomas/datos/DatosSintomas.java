@@ -38,11 +38,17 @@ public class DatosSintomas {
         return path;
     }
 
-    public Sintomas leerDatosSintomas() throws IOException, ClassNotFoundException {
-        ObjectInputStream file = new ObjectInputStream(new FileInputStream(getPath()));
-        Sintomas sintomas = (Sintomas) file.readObject();
-        file.close();
-
+    public Sintomas leerDatosSintomas() {
+        Sintomas sintomas = null;
+        try {
+            ObjectInputStream file = new ObjectInputStream(new FileInputStream(getPath()));
+            sintomas = (Sintomas) file.readObject();
+            file.close();
+        } catch (ClassNotFoundException e){
+            e.printStackTrace();
+        } catch (IOException e){
+            e.printStackTrace();
+        }
         return sintomas;
     }
 
