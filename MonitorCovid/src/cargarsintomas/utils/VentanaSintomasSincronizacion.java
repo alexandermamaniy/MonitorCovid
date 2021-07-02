@@ -21,13 +21,10 @@ public class VentanaSintomasSincronizacion {
     }
 
     public void continuar(){
-        try {
-            synchronized(ventanaSintomasFrame){
-                ventanaSintomasFrame.notify();
-            }
-            ventanaSintomasFrame.dispose();
-        } catch (Exception e){
-            e.printStackTrace();
+
+        synchronized(ventanaSintomasFrame){
+            ventanaSintomasFrame.notify();
         }
+        ventanaSintomasFrame.dispose();
     }
 }

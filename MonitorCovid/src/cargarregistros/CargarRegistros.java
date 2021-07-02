@@ -6,6 +6,7 @@ import monitor.Registro;
 import monitor.Registros;
 import monitor.Sintomas;
 
+import java.io.IOException;
 import java.util.Date;
 
 public class CargarRegistros {
@@ -26,7 +27,9 @@ public class CargarRegistros {
                 for(Registro r: datosRegistros.leerDatosRegistros()){
                     registros.push(r);
                 }
-            } catch (Exception e){
+            } catch (IOException e){
+                e.printStackTrace();
+            } catch (ClassNotFoundException e){
                 e.printStackTrace();
             }
         }

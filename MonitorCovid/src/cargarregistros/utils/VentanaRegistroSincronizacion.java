@@ -19,13 +19,9 @@ public class VentanaRegistroSincronizacion {
     }
 
     public void continuar(){
-        try {
-            synchronized(ventanaJFrame){
-                ventanaJFrame.notify();
-            }
-            ventanaJFrame.dispose();
-        } catch (Exception e){
-            e.printStackTrace();
+        synchronized(ventanaJFrame){
+            ventanaJFrame.notify();
         }
+        ventanaJFrame.dispose();
     }
 }

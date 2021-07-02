@@ -17,6 +17,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.io.IOException;
 import java.util.Date;
 
 public class RegistroJPanel extends JPanel implements ItemListener, ActionListener {
@@ -32,6 +33,7 @@ public class RegistroJPanel extends JPanel implements ItemListener, ActionListen
     private final VentanaJFrame frameRegistro;
     private final JButton salir;
     private Sintomas sintomasPaciente;
+    private final JLabel labelNombreSintoma;
 
     public RegistroJPanel(Sintomas sintomasMonitorDisponibles, Registros registros, Sintomas sintomasPaciente, VentanaJFrame frameRegistro){
         this.sintomasMonitorDisponibles = sintomasMonitorDisponibles;
@@ -51,6 +53,10 @@ public class RegistroJPanel extends JPanel implements ItemListener, ActionListen
 
         jPanel2.setBorder(bordejpanel2);
         add(jPanel2);
+
+        labelNombreSintoma = new JLabel("Sintomas");
+        jPanel1.add(labelNombreSintoma);
+
         FormatoFecha formatoFecha = new FormatoFecha();
         labelFecha = new JLabel("Fecha registro: "+ formatoFecha.dateToString(new Date()) );
         jPanel1.add(labelFecha);
@@ -91,10 +97,11 @@ public class RegistroJPanel extends JPanel implements ItemListener, ActionListen
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         jPanel1.setBounds(40, 20, 670,330);
-        comboCategoriaSintoma.setBounds(35, 35, 200,30);
+        labelNombreSintoma.setBounds(35, 25, 170,30);
+        comboCategoriaSintoma.setBounds(35, 55, 200,30);
         comboCategoriaSintoma.setBackground(Color.WHITE);
-        labelFecha.setBounds(280, 35, 300,30);
-        buttonAgregarSintoma.setBounds(530, 35, 100,30);
+        labelFecha.setBounds(280, 55, 300,30);
+        buttonAgregarSintoma.setBounds(530, 55, 100,30);
         tablaSintomasSeleccionadosJPanel.setBounds(35, 100, 600,200);
 
 
@@ -119,7 +126,7 @@ public class RegistroJPanel extends JPanel implements ItemListener, ActionListen
                     tablaSintomasSeleccionadosJPanel.clear();
                     tablaRegistrosJPanel.actualizarTabla();
                     sintomasPaciente = new Sintomas();
-                } catch (Exception ex) {
+                } catch (IOException ex) {
                     ex.printStackTrace();
                 }
             }

@@ -23,7 +23,7 @@ public class Paquete {
                     String nombreClase = clase.getName().split("\\.")[0];
                     Class.forName(nombrePaquete+"."+nombreClase).asSubclass(sintomaClass);
                     listaClasesPaquete.add(nombreClase);
-                } catch ( Exception e) {
+                } catch ( ClassNotFoundException e) {
                     e.printStackTrace();
                 }
             }

@@ -1,27 +1,32 @@
 package cargarsintomas.utils;
 
 import monitor.Sintoma;
-import monitor.Sintomas;
 
 import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 
 public class CrearSintoma {
 
-    public Sintoma crear(String nombreSintoma, String categoriaSintoma, Sintomas sintomas) throws Exception {
-        Sintoma sintoma;
+    public Sintoma crear(String nombreSintoma, String categoriaSintoma) {
+        Sintoma sintoma = null;
         TratamientoNombreSintoma tratamientoNombreSintoma = new TratamientoNombreSintoma();
-        ValidadorSintoma validadorSintoma = new ValidadorSintoma(sintomas);
-        nombreSintoma = tratamientoNombreSintoma.tratarNombre(nombreSintoma);
         try {
+            nombreSintoma = tratamientoNombreSintoma.tratarNombre(nombreSintoma);
             String nombrePaquete = "sintomas";
-            Class<?> cl = Class.forName(nombrePaquete +"."+categoriaSintoma);
+            Class<?> cl = Class.forName(nombrePaquete + "." + categoriaSintoma);
             Constructor<?> constructor = cl.getConstructor(String.class);
             sintoma = (Sintoma) (constructor.newInstance(new Object[]{nombreSintoma}));
-            if(validadorSintoma.existeSintoma(sintoma)){
-               throw new Exception("Sintoma existente");
-            }
-        } catch (Exception e){
-            throw new Exception("Categoria inexistente");
+
+        } catch (ClassNotFoundException e){
+            e.printStackTrace();
+        } catch (NoSuchMethodException e ){
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
         }
         return sintoma;
     }

@@ -12,7 +12,7 @@ public class DatosSintomas {
         try {
             dir= miDir.getCanonicalPath();
         }
-        catch(Exception e) {
+        catch(IOException e) {
             e.printStackTrace();
         }
 
