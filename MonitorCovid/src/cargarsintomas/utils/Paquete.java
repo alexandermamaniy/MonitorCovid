@@ -22,7 +22,6 @@ public class Paquete {
         List<String> listaClasesPaquete = new ArrayList<>();
         File[] classes = this.archivosPaquete();
         if (classes == null) {
-            System.out.println("Estoy en un jar");
             try {
                 ZipInputStream zip = new ZipInputStream(new FileInputStream("home.jar"));
                 for (ZipEntry entry = zip.getNextEntry(); entry != null; entry = zip.getNextEntry()) {
@@ -31,14 +30,12 @@ public class Paquete {
                         if(className.split("\\.")[0].equals("sintomas")) {
                             listaClasesPaquete.add(className.split("\\.")[1]);
                         }
-
                     }
                 }
             } catch ( IOException e) {
                 e.printStackTrace();
             }
         } else {
-            System.out.println("Estoy en un directorio");
             Class<Sintoma> sintomaClass = Sintoma.class;
             for (File clase: classes){
                 try {
@@ -48,9 +45,6 @@ public class Paquete {
                 } catch ( ClassNotFoundException e) {
                     e.printStackTrace();
                 }
-            }
-            for(String s: listaClasesPaquete) {
-                System.out.println(" Sintomas Marcados: " + s);
             }
         }
         return listaClasesPaquete;
