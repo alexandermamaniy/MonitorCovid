@@ -103,8 +103,6 @@ public class RegistroJPanel extends JPanel implements ItemListener, ActionListen
         labelFecha.setBounds(280, 55, 300,30);
         buttonAgregarSintoma.setBounds(530, 55, 100,30);
         tablaSintomasSeleccionadosJPanel.setBounds(35, 100, 600,200);
-
-
         jPanel2.setBounds(40, 370, 670,300);
         tablaRegistrosJPanel.setBounds(35, 35, 600,230);
         salir.setBounds(610, 700, 100,30);
