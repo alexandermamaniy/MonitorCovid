@@ -31,9 +31,9 @@ public class DatosSintomas {
         String nombreArchivo = "sintomas.dat";
         String nombrePaquete = "cargarsintomas";
         if ( !esDesarrollo ){
-            path = dir+separador+ nombrePaquete +separador+ nombreArchivo;
+            path = dir+separador+  nombreArchivo;
         } else {
-            path = dir+separador+"src"+separador+ nombrePaquete +separador+ nombreArchivo;
+            path = dir+separador+"src"+separador+  nombreArchivo;
         }
         return path;
     }

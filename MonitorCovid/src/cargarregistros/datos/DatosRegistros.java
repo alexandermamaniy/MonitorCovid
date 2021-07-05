@@ -30,9 +30,9 @@ public class DatosRegistros {
         String nombreArchivo = "registros.dat";
         String nombrePaquete = "cargarregistros";
         if ( !esDesarrollo ){
-            path = dir+separador+ nombrePaquete +separador+ nombreArchivo;
+            path = dir+separador+ nombreArchivo;
         } else {
-            path = dir+separador+"src"+separador+ nombrePaquete +separador+ nombreArchivo;
+            path = dir+separador+"src"+separador+ nombreArchivo;
         }
         return path;
     }

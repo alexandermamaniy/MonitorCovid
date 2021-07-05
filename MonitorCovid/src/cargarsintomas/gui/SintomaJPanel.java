@@ -45,9 +45,14 @@ public class SintomaJPanel extends JPanel implements ActionListener {
         comboCategoriaSintoma = new JComboBox<>();
         jPanel1.add(comboCategoriaSintoma);
         Paquete paquete = new Paquete();
-        for(String sintoma: paquete.obtenerClasesPaqueteSintomas() ){
-            comboCategoriaSintoma.addItem(sintoma);
+        try {
+            for(String sintoma: paquete.getPaquete() ){
+                comboCategoriaSintoma.addItem(sintoma);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+
         textFieldSintoma = new JTextField();
         jPanel1.add(textFieldSintoma);
         buttonAgregarSintoma = new JButton("Registrar");
