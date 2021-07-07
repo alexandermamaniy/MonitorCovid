@@ -1,5 +1,7 @@
 package cargarsintomas.utils;
 
+import monitor.Sintoma;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -8,79 +10,69 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.security.CodeSource;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 public class Paquete {
+    private final String nombrePaquete = "sintomas";
 
-    public List<String> getPaquete(){
-        CodeSource src = Paquete.class.getProtectionDomain().getCodeSource();
-        ArrayList<String> paths = new ArrayList<>();
-        if (src != null) {
-            URL jar = src.getLocation();
+    public List<String> getPaquete()  {
+        List<String> listaClasesPaquete = new ArrayList<>();
+        File[] classes = this.archivosPaquete();
+        if (classes == null) {
+            System.out.println("Estoy en un jar");
             try {
-                if ( jar.getPath().endsWith("jar")) {
-                    ZipInputStream zip = new ZipInputStream(jar.openStream());
-
-                    while (true) {
-                        ZipEntry e = zip.getNextEntry();
-                        if (e == null) {
-                            break;
+                ZipInputStream zip = new ZipInputStream(new FileInputStream("home.jar"));
+                for (ZipEntry entry = zip.getNextEntry(); entry != null; entry = zip.getNextEntry()) {
+                    if (!entry.isDirectory() && entry.getName().endsWith(".class")) {
+                        String className = entry.getName().replace('/', '.'); // including ".class"
+                        if(className.split("\\.")[0].equals("sintomas")) {
+                            listaClasesPaquete.add(className.split("\\.")[1]);
                         }
-//                        if ( e.getName().startsWith("sintomas") && e.getName().endsWith(".class") ){
-//                            paths.add(e.getName());
-//                        }
+
                     }
-                } else {
-                    fileViewer(new File(jar.toURI()), paths);
                 }
-            } catch (IOException e) {
+            } catch ( IOException e) {
                 e.printStackTrace();
-            } catch (URISyntaxException e){
-                e.printStackTrace();
-            }
-        }
-        System.out.println(paths);
-        ArrayList<String> lista = new ArrayList<>();
-        for(String ss: paths){
-            if(ss.contains("/")) {
-                String[] r = ss.split("/");
-                lista.add(r[r.length-1].substring(0, r[r.length-1].indexOf('.')));
-            } else {
-                String[] r = ss.split("\\\\");
-                lista.add(r[r.length-1].substring(0, r[r.length-1].indexOf('.')));
-            }
-        }
-
-        List<String> classNames = new ArrayList<String>();
-        try {
-            ZipInputStream zip = new ZipInputStream(new FileInputStream("home.jar"));
-            for (ZipEntry entry = zip.getNextEntry(); entry != null; entry = zip.getNextEntry()) {
-                if (!entry.isDirectory() && entry.getName().endsWith(".class")) {
-                    // This ZipEntry represents a class. Now, what class does it represent?
-                    String className = entry.getName().replace('/', '.'); // including ".class"
-                    classNames.add(className.substring(0, className.length() - ".class".length()));
-                    System.out.println(className);
-                }
-            }
-        } catch ( IOException e) {
-            e.printStackTrace();
-        }
-
-
-        return lista;
-    }
-
-    private void fileViewer(File file, ArrayList<String> paths) {
-        if (file.isDirectory()) {
-            for (File f : file.listFiles()) {
-                fileViewer(f, paths);
             }
         } else {
-            if ( file.getPath().contains("\\sintomas\\") && file.getPath().endsWith(".class") ){
-                paths.add(file.getPath());
+            System.out.println("Estoy en un directorio");
+            Class<Sintoma> sintomaClass = Sintoma.class;
+            for (File clase: classes){
+                try {
+                    String nombreClase = clase.getName().split("\\.")[0];
+                    Class.forName(nombrePaquete+"."+nombreClase).asSubclass(sintomaClass);
+                    listaClasesPaquete.add(nombreClase);
+                } catch ( ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+            }
+            for(String s: listaClasesPaquete) {
+                System.out.println(" Sintomas Marcados: " + s);
             }
         }
+        return listaClasesPaquete;
     }
+
+    private File[] archivosPaquete() {
+        File dir = null;
+        File[] archivos = null;
+        try {
+            Enumeration<URL> urls = Thread.currentThread().getContextClassLoader()
+                    .getResources(nombrePaquete);
+            while (urls.hasMoreElements()) {
+                URL url = urls.nextElement();
+                dir = new File(url.getFile());
+            }
+            archivos = dir.listFiles();
+        } catch (IOException e) {
+
+        } catch (NullPointerException e){
+
+        }
+        return archivos;
+    }
+
 }
