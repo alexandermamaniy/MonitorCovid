@@ -8,7 +8,10 @@ import monitor.Sintoma;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TablaRegistrosJPanel extends JPanel {
     private final JScrollPane tableScollPanel;
@@ -29,7 +32,12 @@ public class TablaRegistrosJPanel extends JPanel {
             String sintomasPaciente = formatoSintomas.formatoSintomas(r.getSintomas());
             dataTable.addRow(new Object[]{fecha, sintomasPaciente });
         }
+        TableRowSorter sorter = new TableRowSorter(dataTable);
+        table.setRowSorter(sorter);
         add(tableScollPanel);
+        List<RowSorter.SortKey> sortKeys = new ArrayList<>();
+        sortKeys.add(new RowSorter.SortKey(0,SortOrder.ASCENDING));
+        sorter.setSortKeys(sortKeys);
     }
 
     private void clear(){

@@ -17,7 +17,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.io.IOException;
 import java.util.Date;
 
 public class RegistroJPanel extends JPanel implements ItemListener, ActionListener {
@@ -32,8 +31,8 @@ public class RegistroJPanel extends JPanel implements ItemListener, ActionListen
     private final JPanel jPanel2;
     private final VentanaJFrame frameRegistro;
     private final JButton salir;
-    private Sintomas sintomasPaciente;
     private final JLabel labelNombreSintoma;
+    private Sintomas sintomasPaciente;
 
     public RegistroJPanel(Sintomas sintomasMonitorDisponibles, Registros registros, Sintomas sintomasPaciente, VentanaJFrame frameRegistro){
         this.sintomasMonitorDisponibles = sintomasMonitorDisponibles;
@@ -80,7 +79,6 @@ public class RegistroJPanel extends JPanel implements ItemListener, ActionListen
         salir = new JButton("Terminar");
         salir.addActionListener(this);
         add(salir);
-
     }
 
     public void itemStateChanged(ItemEvent e){
@@ -117,16 +115,12 @@ public class RegistroJPanel extends JPanel implements ItemListener, ActionListen
                 i++;
             }
             if (i>0){
-                try {
-                    DatosRegistros datosRegistros = new DatosRegistros();
-                    registros.push(new Registro(new Date(), sintomasPaciente));
-                    datosRegistros.guardarDatosRegistros(registros);
-                    tablaSintomasSeleccionadosJPanel.clear();
-                    tablaRegistrosJPanel.actualizarTabla();
-                    sintomasPaciente = new Sintomas();
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
+                DatosRegistros datosRegistros = new DatosRegistros();
+                registros.push(new Registro(new Date(), sintomasPaciente));
+                datosRegistros.guardarDatosRegistros(registros);
+                tablaSintomasSeleccionadosJPanel.clear();
+                tablaRegistrosJPanel.actualizarTabla();
+                sintomasPaciente = new Sintomas();
             }
         } else  if ( botonPulsado == salir){
             frameRegistro.setVisible(false);

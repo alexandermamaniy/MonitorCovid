@@ -29,7 +29,6 @@ public class DatosSintomas {
         }
 
         String nombreArchivo = "sintomas.dat";
-        String nombrePaquete = "cargarsintomas";
         if ( !esDesarrollo ){
             path = dir+separador+  nombreArchivo;
         } else {
@@ -57,9 +56,14 @@ public class DatosSintomas {
         return f.exists();
     }
 
-    public void guardarDatosSintomas(Sintomas sintomas) throws IOException {
-        ObjectOutputStream file = new ObjectOutputStream(new FileOutputStream(getPath()));
-        file.writeObject(sintomas);
-        file.close();
+    public void guardarDatosSintomas(Sintomas sintomas){
+        try {
+            ObjectOutputStream file = new ObjectOutputStream(new FileOutputStream(getPath()));
+            file.writeObject(sintomas);
+            file.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 }

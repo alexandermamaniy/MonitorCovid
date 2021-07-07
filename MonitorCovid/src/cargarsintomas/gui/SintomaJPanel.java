@@ -13,7 +13,6 @@ import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 
 public class SintomaJPanel extends JPanel implements ActionListener {
     private final JComboBox<String> comboCategoriaSintoma;
@@ -45,12 +44,9 @@ public class SintomaJPanel extends JPanel implements ActionListener {
         comboCategoriaSintoma = new JComboBox<>();
         jPanel1.add(comboCategoriaSintoma);
         Paquete paquete = new Paquete();
-        try {
-            for(String sintoma: paquete.getPaquete() ){
-                comboCategoriaSintoma.addItem(sintoma);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+
+        for(String sintoma: paquete.getPaquete() ){
+            comboCategoriaSintoma.addItem(sintoma);
         }
 
         textFieldSintoma = new JTextField();
@@ -84,19 +80,15 @@ public class SintomaJPanel extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         Object botonPulsado = e.getSource();
         if (botonPulsado == buttonAgregarSintoma) {
-            try {
-                String categoria = (String) comboCategoriaSintoma.getSelectedItem();
-                String name = textFieldSintoma.getText();
-                if(!name.equals("")){
-                    CrearSintoma crearSintoma = new CrearSintoma();
-                    Sintoma sintoma = crearSintoma.crear(name, categoria);
-                    sintomas.add(sintoma);
-                    tablaSintomasJPanel.addRow(new String[]{sintoma.toString(), categoria });
-                    textFieldSintoma.setText("");
-                    (new DatosSintomas()).guardarDatosSintomas(sintomas);
-                }
-            } catch (IOException ex) {
-                ex.printStackTrace();
+            String categoria = (String) comboCategoriaSintoma.getSelectedItem();
+            String name = textFieldSintoma.getText();
+            if(!name.equals("")){
+                CrearSintoma crearSintoma = new CrearSintoma();
+                Sintoma sintoma = crearSintoma.crear(name, categoria);
+                sintomas.add(sintoma);
+                tablaSintomasJPanel.addRow(new String[]{sintoma.toString(), categoria });
+                textFieldSintoma.setText("");
+                (new DatosSintomas()).guardarDatosSintomas(sintomas);
             }
         } else if (botonPulsado == terminar){
             frameSintomas.setVisible(false);

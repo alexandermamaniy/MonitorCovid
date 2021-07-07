@@ -5,6 +5,7 @@ import monitor.Sintomas;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 import java.awt.*;
 
 public class TablaSintomasJPanel extends JPanel {
@@ -22,7 +23,10 @@ public class TablaSintomasJPanel extends JPanel {
             String categoria = sintoma.getClass().getName().split("\\.")[1];
             dataTable.addRow(new Object[]{name, categoria });
         }
+        TableRowSorter sorter = new TableRowSorter(dataTable);
+        table.setRowSorter(sorter);
         add(tableScollPanel);
+
     }
 
     public void addRow(String[] row){

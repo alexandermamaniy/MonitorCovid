@@ -28,7 +28,6 @@ public class DatosRegistros {
         }
 
         String nombreArchivo = "registros.dat";
-        String nombrePaquete = "cargarregistros";
         if ( !esDesarrollo ){
             path = dir+separador+ nombreArchivo;
         } else {
@@ -56,9 +55,13 @@ public class DatosRegistros {
         return f.exists();
     }
 
-    public void guardarDatosRegistros(Registros registros) throws IOException {
-        ObjectOutputStream file = new ObjectOutputStream(new FileOutputStream(getPath()));
-        file.writeObject(registros);
-        file.close();
+    public void guardarDatosRegistros(Registros registros) {
+        try {
+            ObjectOutputStream file = new ObjectOutputStream(new FileOutputStream(getPath()));
+            file.writeObject(registros);
+            file.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
