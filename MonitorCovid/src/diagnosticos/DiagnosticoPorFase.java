@@ -24,70 +24,190 @@ public class DiagnosticoPorFase extends FuncionDiagnostico {
         cargarFaseSintomasMonitor(ls);
     }
 
+    // 0    No tiene sintomas,
+    // 1    Si esta en fase 1
+    // 2    Si esta en fase 2
+
+
+
     @Override
     public int diagnostico(Registros registros) {
         int fase1=0, fase2=0;
         cargarFaseRegistroMonitor(registros);
         hallarEstadoDeDiagnostico();
+        ///
+//        if(!estadoDiagnosticoFechas.isEmpty()) {
+//
+//            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+//            Calendar c = Calendar.getInstance();
+//            c.setTime(new Date());
+//            Date end = c.getTime();
+//            String fechaString = format.format (end);
+//            boolean terminar = false;
+//            Date start;
+//            while (!terminar) {
+//                c.add(Calendar.DATE, -1);
+//                start = c.getTime();
+//                String fechaStringMenoUno = format.format (start);
+//
+//                if(!estadoDiagnosticoFechas.containsKey(fechaStringMenoUno)){
+//                    c.setTime(parseDate(fechaString));
+//                    break;
+//                }
+//
+//                if ((estadoDiagnosticoFechas.get(fechaString).get("SegundaFase")>=50
+//                        && ((estadoDiagnosticoFechas.get(fechaStringMenoUno).get("SegundaFase")>=50 )
+//                        ||  (estadoDiagnosticoFechas.get(fechaStringMenoUno).get("PrimeraFase")>=50)) )){
+////                    System.out.println("a  , " +fechaString);
+//                    fechaString= format.format (start);
+//
+//                    continue;
+//
+//                } else if ((estadoDiagnosticoFechas.get(fechaString).get("PrimeraFase")>=50
+//                        &&  (estadoDiagnosticoFechas.get(fechaStringMenoUno).get("PrimeraFase")>=50))) {
+//
+//                    fechaString= format.format (start);
+//                    continue;
+//                }
+//                terminar = true;
+//                c.add(Calendar.DATE, +1);
+//                start = c.getTime();
+//                fechaString= format.format (start);
+//            }
+//            terminar = false;
+//            while (!terminar) {
+////                System.out.println(fechaString);
+//                if(!estadoDiagnosticoFechas.containsKey(fechaString)){
+//                    c.add(Calendar.DATE, -1);
+//                    start = c.getTime();
+//                    fechaString= format.format (start);
+//                    break;
+//                }
+//
+//                if(estadoDiagnosticoFechas.get(fechaString).get("PrimeraFase") >= 50 && fase1 < 3){
+//                    fase1++;
+//                } else  if (estadoDiagnosticoFechas.get(fechaString).get("SegundaFase") >= 50 && fase1>=3){
+//                    fase2++;
+//
+//                }
+//
+//                c.add(Calendar.DATE, +1);
+//                start = c.getTime();
+//                fechaString= format.format (start);
+//            }
+//        }
 
-        if(!estadoDiagnosticoFechas.isEmpty()) {
 
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-            Calendar c = Calendar.getInstance();
-            c.setTime(new Date());
-            Date end = c.getTime();
-            String fechaString = format.format (end);
-            boolean terminar = false;
-            Date start;
-            while (!terminar) {
-                c.add(Calendar.DATE, -1);
-                start = c.getTime();
-                String fechaStringMenoUno = format.format (start);
+        //////////////////////////////////////////////////////
+//
+//        if(!estadoDiagnosticoFechas.isEmpty()) {
+//
+//            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+//            Calendar c = Calendar.getInstance();
+//            c.setTime(new Date());
+//            Date end = c.getTime();     // fecha de hoy, referencia para no perdernos
+//            String fechaString = format.format (end);
+//            boolean terminar = false;
+//            Date start;                 // usar para movernos en el diagnostico
+//            while (!terminar) {
+//                c.add(Calendar.DATE, -1);
+//                start = c.getTime();
+//                String fechaStringMenoUno = format.format (start);
+//
+//                if(!estadoDiagnosticoFechas.containsKey(fechaStringMenoUno)){
+//                    c.setTime(parseDate(fechaString));
+//                    break;
+//                }
+//
+////                if ((estadoDiagnosticoFechas.get(fechaString).get("SegundaFase")>=50
+////                        && ((estadoDiagnosticoFechas.get(fechaStringMenoUno).get("SegundaFase")>=50 )
+////                        ||  (estadoDiagnosticoFechas.get(fechaStringMenoUno).get("PrimeraFase")>=50)) )){
+//////                    System.out.println("a  , " +fechaString);
+////                    fechaString= format.format (start);
+////
+////                    continue;
+////
+////                } else if ((estadoDiagnosticoFechas.get(fechaString).get("PrimeraFase")>=50
+////                        &&  (estadoDiagnosticoFechas.get(fechaStringMenoUno).get("PrimeraFase")>=50))) {
+////
+////                    fechaString= format.format (start);
+////                    continue;
+////                }
+//                /*
+//                * 07/05
+//                * 08/05
+//                * 09/05   P   / Break  buscar sengunda fase
+//                * 10/05   P
+//                * 11/05   P
+//                * 12/05   P
+//                * */
+//
+//
+//                /*
+//                 * 05/05  P     3
+//                 * 06/05  P     2
+//                * 07/05   P     1
+//                * 08/05         0
+//                * 09/05   P     1
+//                * 10/05         0
+//                * 11/05   P     2
+//                * 12/05   P     1
+//                * */
+//
+//
+//                if(estadoDiagnosticoFechas.get(fechaString).get("PrimeraFase") >= 50 && fase1 < 3){
+//                    fase1++;
+//                    continue;
+//                } else if ( fase1 >= 3 ) {
+//                    break;
+//                    // encontro mas de 3 dias y entramos a 2da fase
+//                } else if ( fase1 < 3 ) {
+//                    fase1 = 0;
+//                    continue;
+//                    // Tenemos que reiniciar el contador de fases y volver a contar
+//                }
+//
+//                terminar = true;
+//                c.add(Calendar.DATE, +1);
+//                start = c.getTime();
+//                fechaString= format.format (start);
+//            }
+//            // fase 1=3
+//            // fechaString
+//            // end en la que partimos
+//
+//            terminar = false;
+//            while (!terminar) {
+////                System.out.println(fechaString);
+//                if(!estadoDiagnosticoFechas.containsKey(fechaString)){
+//                    c.add(Calendar.DATE, -1);
+//                    start = c.getTime();
+//                    fechaString= format.format (start);
+//                    break;
+//                }
+//
+//                if(estadoDiagnosticoFechas.get(fechaString).get("PrimeraFase") >= 50 && fase1 < 3){
+//                    fase1++;
+//                } else  if (estadoDiagnosticoFechas.get(fechaString).get("SegundaFase") >= 50 && fase1>=3){
+//                    fase2++;
+//
+//                }
+//
+//                c.add(Calendar.DATE, +1);
+//                start = c.getTime();
+//                fechaString= format.format (start);
+//            }
+//        }
 
-                if(!estadoDiagnosticoFechas.containsKey(fechaStringMenoUno)){
-                    c.setTime(parseDate(fechaString));
-                    break;
-                }
-
-                if ((estadoDiagnosticoFechas.get(fechaString).get("SegundaFase")>=50
-                        && ((estadoDiagnosticoFechas.get(fechaStringMenoUno).get("SegundaFase")>=50 )
-                        ||  (estadoDiagnosticoFechas.get(fechaStringMenoUno).get("PrimeraFase")>=50)) )){
-//                    System.out.println("a  , " +fechaString);
-                    fechaString= format.format (start);
-
-                    continue;
-
-                } else if ((estadoDiagnosticoFechas.get(fechaString).get("PrimeraFase")>=50
-                        &&  (estadoDiagnosticoFechas.get(fechaStringMenoUno).get("PrimeraFase")>=50))) {
-
-                    fechaString= format.format (start);
-                    continue;
-                }
-                terminar = true;
-                c.add(Calendar.DATE, +1);
-                start = c.getTime();
-                fechaString= format.format (start);
-            }
-            terminar = false;
-            while (!terminar) {
-//                System.out.println(fechaString);
-                if(!estadoDiagnosticoFechas.containsKey(fechaString)){
-                    c.add(Calendar.DATE, -1);
-                    start = c.getTime();
-                    fechaString= format.format (start);
-                    break;
-                }
-
-                if(estadoDiagnosticoFechas.get(fechaString).get("PrimeraFase") >= 50 && fase1 < 3){
-                    fase1++;
-                } else  if (estadoDiagnosticoFechas.get(fechaString).get("SegundaFase") >= 50 && fase1>=3){
-                    fase2++;
-
-                }
-
-                c.add(Calendar.DATE, +1);
-                start = c.getTime();
-                fechaString= format.format (start);
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        for (Registro r: registros) {
+            String fechaString= format.format (r.getFecha());
+            if(estadoDiagnosticoFechas.get(fechaString).get("PrimeraFase") >= 50 && fase1 < 3){
+                fase1++;
+            } else if ( fase1 >= 3 && estadoDiagnosticoFechas.get(fechaString).get("SegundaFase") >= 50 ) {
+                fase2++;
+            } else if ( fase1 < 3 ) {
+                fase1 = 0;
             }
         }
         return fase1+fase2;

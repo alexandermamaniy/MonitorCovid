@@ -295,6 +295,78 @@ public class TestDiagnosticoFase {
     }
 
 
+    @Test
+    void s(){
+
+        Sintomas a ;
+        a = new Sintomas();
+        a.add(s1f1);
+        a.add(s2f1);
+        registrosMonitor.push(new Registro(parseDate("2021-07-02"), a));
+
+        a = new Sintomas();
+        a.add(s1f1);
+        a.add(s2f1);
+        registrosMonitor.push(new Registro(parseDate("2021-07-03"), a));
+
+        a = new Sintomas();
+        registrosMonitor.push(new Registro(parseDate("2021-07-04"), a));
+
+        a = new Sintomas();
+        registrosMonitor.push(new Registro(parseDate("2021-07-05"), a));
+
+        a = new Sintomas();
+        a.add(s2f1);
+        a.add(s1f1);
+        registrosMonitor.push(new Registro(parseDate("2021-07-06"), a));
+
+        DiagnosticoPorFase di = new DiagnosticoPorFase(sintomasMonitor);
+        assertEquals(di.diagnostico(registrosMonitor), 1);
+    }
+
+
+    @Test
+    void d(){
+
+        Sintomas a ;
+        a = new Sintomas();
+        a.add(s1f1);
+        a.add(s2f1);
+        registrosMonitor.push(new Registro(parseDate("2021-07-02"), a));
+
+        a = new Sintomas();
+        a.add(s1f1);
+        a.add(s2f1);
+        registrosMonitor.push(new Registro(parseDate("2021-07-03"), a));
+
+        a = new Sintomas();
+        a.add(s1f1);
+        a.add(s2f1);
+        registrosMonitor.push(new Registro(parseDate("2021-07-04"), a));
+
+        a = new Sintomas();
+        a.add(s5f2);
+        a.add(s6f2);
+        registrosMonitor.push(new Registro(parseDate("2021-07-05"), a));
+
+        a = new Sintomas();
+        a.add(s6f2);
+        a.add(s7f2);
+        registrosMonitor.push(new Registro(parseDate("2021-07-06"), a));
+
+        a = new Sintomas();
+        a.add(s1f1);
+        a.add(s2f1);
+        registrosMonitor.push(new Registro(parseDate("2021-07-07"), a));
+
+        a = new Sintomas();
+
+        registrosMonitor.push(new Registro(parseDate("2021-07-08"), a));
+
+        DiagnosticoPorFase di = new DiagnosticoPorFase(sintomasMonitor);
+        assertEquals(di.diagnostico(registrosMonitor), 5);
+    }
+
     public static Date parseDate(String date) {
         try {
             return new SimpleDateFormat("yyyy-MM-dd").parse(date);
