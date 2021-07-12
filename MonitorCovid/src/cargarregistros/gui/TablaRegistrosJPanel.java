@@ -24,11 +24,27 @@ public class TablaRegistrosJPanel extends JPanel {
         dataTable.addColumn("Sintomas");
         FormatoFecha formatoFecha = new FormatoFecha();
         FormatoSintomas formatoSintomas = new FormatoSintomas();
-        for(Registro r: registros){
+
+        Registros aux = new Registros();
+        registros.
+        for (Registro res: registros){
+            aux.push(registros.);
+        }
+
+        for(Registro r: aux) {
             String fecha = formatoFecha.dateAndHourToString(r.getFecha());
             String sintomasPaciente = formatoSintomas.formatoSintomas(r.getSintomas());
             dataTable.addRow(new Object[]{fecha, sintomasPaciente });
+            System.out.println("Ingreso,  "+ r);
         }
+
+//        for(Registro r: registros){
+//            String fecha = formatoFecha.dateAndHourToString(r.getFecha());
+//            String sintomasPaciente = formatoSintomas.formatoSintomas(r.getSintomas());
+//            dataTable.addRow(new Object[]{fecha, sintomasPaciente });
+//            // invertir
+//        }
+
         add(tableScollPanel);
     }
 
@@ -42,13 +58,29 @@ public class TablaRegistrosJPanel extends JPanel {
 
     public void actualizarTabla(){
         clear();
-        for (Registro r: registros){
-            StringBuilder data = new StringBuilder();
-            FormatoFecha f = new FormatoFecha();
-            for (Sintoma s: r.getSintomas()){
-                data.append(s.toString()).append(", ");
-            }
-            addRow(new String[]{f.dateAndHourToString(r.getFecha()), data.toString()});
+//        for (Registro r: registros){
+//            StringBuilder data = new StringBuilder();
+//            FormatoFecha f = new FormatoFecha();
+//            for (Sintoma s: r.getSintomas()){
+//                data.append(s.toString()).append(", ");
+//            }
+//            addRow(new String[]{f.dateAndHourToString(r.getFecha()), data.toString()});
+//        // invertir
+//        }
+
+        FormatoFecha formatoFecha = new FormatoFecha();
+        FormatoSintomas formatoSintomas = new FormatoSintomas();
+
+        Registros aux = new Registros();
+        for (Registro res: registros){
+            aux.push(res);
+        }
+
+        for(Registro r: aux) {
+            String fecha = formatoFecha.dateAndHourToString(r.getFecha());
+            String sintomasPaciente = formatoSintomas.formatoSintomas(r.getSintomas());
+            dataTable.addRow(new Object[]{fecha, sintomasPaciente });
+            System.out.println("Ingreso,  "+ r);
         }
     }
 
