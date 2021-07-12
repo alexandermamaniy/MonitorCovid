@@ -32,7 +32,6 @@ public class RegistroJPanel extends JPanel implements ItemListener, ActionListen
     private final VentanaJFrame frameRegistro;
     private final JButton salir;
     private final JLabel labelNombreSintoma;
-//    private final JLabel recomendacion;
 
     private Sintomas sintomasPaciente;
 
@@ -41,21 +40,6 @@ public class RegistroJPanel extends JPanel implements ItemListener, ActionListen
         this.sintomasPaciente = sintomasPaciente;
         this.registros = registros;
         this.frameRegistro = frameRegistro;
-
-//        recomendacion = new JLabel("");
-//        add(recomendacion);
-//        if (!registros.isEmpty()) {
-//            for(Sintoma s: sintomasMonitorDisponibles){
-//                if(s.getClass().getName().split("\\.")[1].equals("PrimeraFase")){
-//                    recomendacion.setText("Debes ir a hacerte revisar, estas en Primera Fase");
-//
-//                } else if(s.getClass().getName().split("\\.")[1].equals("SegundaFase")){
-//                    recomendacion.setText("Debes ir a hacerte revisar, estas en Segunda Fase");
-//
-//                }
-//                break;
-//            }
-//        }
 
 
         jPanel1 = new JPanel();
@@ -114,8 +98,6 @@ public class RegistroJPanel extends JPanel implements ItemListener, ActionListen
 
     public void paintComponent(Graphics g){
         super.paintComponent(g);
-
-//        recomendacion.setBounds(40, 0, 500,50);
 
         jPanel1.setBounds(40, 70, 670,280);
         labelNombreSintoma.setBounds(35, 25, 170,30);

@@ -5,7 +5,7 @@ import cargarsintomas.CargarSintomas;
 import diagnosticos.DiagnosticoPorFase;
 
 public class Monitor {
-
+    
     private Sintomas sintomas;
     private Registros registros;
     private FuncionDiagnostico funcion;
@@ -17,10 +17,12 @@ public class Monitor {
         sintomas = cargarSintomas.getSintomas();
         funcion = new DiagnosticoPorFase(sintomas);
         registros = new Registros();
+        //
         cargarRegistros = new CargarRegistros(funcion.getSintomasFase());
     }
 
     public void monitorear() {
+
         registros = cargarRegistros.getRegistros();
         resultadoDiagnostico = funcion.diagnostico(registros);
         funcion.mostrarDiagnostico(resultadoDiagnostico);

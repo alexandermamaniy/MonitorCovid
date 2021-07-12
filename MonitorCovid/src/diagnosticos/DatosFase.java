@@ -26,7 +26,7 @@ public class DatosFase {
             }
         }
 
-        String nombreArchivo = "fase.dat";
+        String nombreArchivo = "AlexanderFase.dat";
         if ( !esDesarrollo ){
             path = dir+separador+  nombreArchivo;
         } else {

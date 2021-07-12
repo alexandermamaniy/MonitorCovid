@@ -124,7 +124,7 @@ public class DiagnosticoPorFase extends FuncionDiagnostico {
                 String fase = sintomasDeUnaFase.get(s);
                 Integer nroSintomasFase = nroSintomasDeCadaFase.get(fase);
                 Double porcentajeActualSintomaFase =  estadoDiagnosticoFechas.get(fechaRegistro).get(fase);
-                Double procentajeFaseSintoma = Double.valueOf(100/nroSintomasFase);
+                Double procentajeFaseSintoma = (double) (100 / nroSintomasFase);
                 estadoDiagnosticoFechas.get(fechaRegistro).put(fase, porcentajeActualSintomaFase + procentajeFaseSintoma );
             }
         }

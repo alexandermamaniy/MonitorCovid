@@ -27,7 +27,7 @@ public class DatosRegistros {
             }
         }
 
-        String nombreArchivo = "registros.dat";
+        String nombreArchivo = "AlexanderRegistros.dat";
         if ( !esDesarrollo ){
             path = dir+separador+ nombreArchivo;
         } else {

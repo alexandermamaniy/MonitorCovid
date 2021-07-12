@@ -37,7 +37,6 @@ public class CargarRegistros {
         Sintomas sintomasPaciente = new Sintomas();
         cargarSintomasApp(sintomasPaciente);
         return registros;
-        
     }
 
     public Registro getRegistro() {
