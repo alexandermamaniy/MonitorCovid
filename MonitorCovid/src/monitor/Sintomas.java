@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Sintomas implements Iterable<Sintoma>, Serializable {
 
@@ -22,4 +23,14 @@ public class Sintomas implements Iterable<Sintoma>, Serializable {
         return sintomas.iterator();
     }
 
+    public Sintomas getSintomasFase(Fase fase){
+        Sintomas res = new Sintomas();
+        if (fase.getNombre().equals("PrimeraFase")){
+            res.sintomas = this.sintomas.stream()
+                    .filter(sintoma -> sintoma.getClass().getSimpleName().equals(fase.getNombre())).collect( Collectors.toCollection(HashSet::new));
+            return res;
+        } else {
+            return this;
+        }
+    }
 }

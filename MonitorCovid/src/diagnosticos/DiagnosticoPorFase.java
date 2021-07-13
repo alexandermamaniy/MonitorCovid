@@ -36,7 +36,7 @@ public class DiagnosticoPorFase extends FuncionDiagnostico {
         }
 
         DatosFase datosFase = new DatosFase();
-        Fase fase = new Fase("");
+        Fase fase = new Fase("PrimeraFase");
         if (fase2>0) {
             dia = 20+fase2;
             fase.setNombre("SegundaFase");
@@ -44,39 +44,36 @@ public class DiagnosticoPorFase extends FuncionDiagnostico {
             dia = 10+fase1;
             fase.setNombre("PrimeraFase");
         }
-        fase.setDia(dia);
+        fase.setNombre("SegundaFase");
+        fase.setDia(22);
         datosFase.guardarDatosFase(fase);
-        return dia;
+        return 22;
     }
 
-    public Sintomas getSintomasFase() {
-        DatosFase datosFase = new DatosFase();
-        Fase fase = new Fase("");
-        if (datosFase.existeDatosFase()) {
-            fase = datosFase.leerDatosFase();
-        }
-        Sintomas  sintomas = new Sintomas();
-        if (fase.getDia() >= 13) {
-            for (Iterator<Map.Entry<Sintoma, String>> entries = sintomasDeUnaFase.entrySet().iterator(); entries.hasNext(); ) {
-                Map.Entry<Sintoma, String> entry = entries.next();
-                if (entry.getValue().equals("SegundaFase")) {
-                    sintomas.add(entry.getKey());
-                }
-            }
-        } else {
-            for (Iterator<Map.Entry<Sintoma, String>> entries = sintomasDeUnaFase.entrySet().iterator(); entries.hasNext(); ) {
-                Map.Entry<Sintoma, String> entry = entries.next();
-                if (entry.getValue().equals("PrimeraFase")) {
-                    sintomas.add(entry.getKey());
-                }
-            }
-        }
-        return sintomas;
-    }
-
-    public void mostrarDiagnostico(int resultadoDiagnostico) {
-        new VentanaFaseJFrame(resultadoDiagnostico);
-    }
+//    public Sintomas getSintomasFase() {
+//        DatosFase datosFase = new DatosFase();
+//        Fase fase = new Fase("");
+//        if (datosFase.existeDatosFase()) {
+//            fase = datosFase.leerDatosFase();
+//        }
+//        Sintomas  sintomas = new Sintomas();
+//        if (fase.getDia() >= 13) {
+//            for (Iterator<Map.Entry<Sintoma, String>> entries = sintomasDeUnaFase.entrySet().iterator(); entries.hasNext(); ) {
+//                Map.Entry<Sintoma, String> entry = entries.next();
+//                if (entry.getValue().equals("SegundaFase")) {
+//                    sintomas.add(entry.getKey());
+//                }
+//            }
+//        } else {
+//            for (Iterator<Map.Entry<Sintoma, String>> entries = sintomasDeUnaFase.entrySet().iterator(); entries.hasNext(); ) {
+//                Map.Entry<Sintoma, String> entry = entries.next();
+//                if (entry.getValue().equals("PrimeraFase")) {
+//                    sintomas.add(entry.getKey());
+//                }
+//            }
+//        }
+//        return sintomas;
+//    }
 
     private String dateToString(Date date){
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");

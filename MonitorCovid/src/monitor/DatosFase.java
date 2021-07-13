@@ -1,4 +1,4 @@
-package diagnosticos;
+package monitor;
 
 import java.io.*;
 
@@ -26,7 +26,7 @@ public class DatosFase {
             }
         }
 
-        String nombreArchivo = "AlexanderFase.dat";
+        String nombreArchivo = "fase.dat";
         if ( !esDesarrollo ){
             path = dir+separador+  nombreArchivo;
         } else {
@@ -38,9 +38,13 @@ public class DatosFase {
     public Fase leerDatosFase() {
         Fase fase = null;
         try {
-            ObjectInputStream file = new ObjectInputStream(new FileInputStream(getPath()));
-            fase = (Fase) file.readObject();
-            file.close();
+            if (existeDatosFase()){
+                ObjectInputStream file = new ObjectInputStream(new FileInputStream(getPath()));
+                fase = (Fase) file.readObject();
+                file.close();
+            } else {
+                fase = new Fase("PrimeraFase");
+            }
         } catch (ClassNotFoundException e){
             e.printStackTrace();
         } catch (IOException e){

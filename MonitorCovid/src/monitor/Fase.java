@@ -1,4 +1,4 @@
-package diagnosticos;
+package monitor;
 
 import java.io.Serializable;
 
