@@ -6,6 +6,7 @@ import monitor.Registros;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -23,6 +24,10 @@ public class TablaFechasJPanel extends JPanel {
         JTable table = new JTable(dataTable);
         tableScollPanel = new JScrollPane(table);
         dataTable.addColumn("Fecha");
+
+        TableRowSorter<DefaultTableModel> sorTable = new TableRowSorter<>(dataTable);
+        table.setRowSorter(sorTable);
+
         add(tableScollPanel);
         table.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e){

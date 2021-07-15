@@ -5,6 +5,7 @@ import monitor.Sintomas;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 import java.awt.*;
 
 public class TablaRegistrosJPanel extends JPanel {
@@ -20,7 +21,8 @@ public class TablaRegistrosJPanel extends JPanel {
         dataTable.addColumn("Categoria");
         dataTable.addColumn("Nombre Sintoma");
 
-
+        TableRowSorter<DefaultTableModel> sorTable = new TableRowSorter<>(dataTable);
+        table.setRowSorter(sorTable);
         add(tableScollPanel);
     }
 
