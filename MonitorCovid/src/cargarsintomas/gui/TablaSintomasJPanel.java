@@ -7,6 +7,8 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TablaSintomasJPanel extends JPanel {
     private final JScrollPane tableScollPanel;
@@ -23,6 +25,12 @@ public class TablaSintomasJPanel extends JPanel {
 
         TableRowSorter<DefaultTableModel> sorTable = new TableRowSorter<>(dataTable);
         table.setRowSorter(sorTable);
+
+        List<RowSorter.SortKey> sortKeys = new ArrayList<>(25);
+        sortKeys.add(new RowSorter.SortKey(0, SortOrder.ASCENDING));
+        sortKeys.add(new RowSorter.SortKey(1, SortOrder.DESCENDING));
+        sorTable.setSortKeys(sortKeys);
+
         add(tableScollPanel);
     }
 

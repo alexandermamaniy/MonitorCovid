@@ -1,4 +1,4 @@
-import diagnosticos.DiagnosticoPorFase;
+import diagnosticos.DiagnosticoPorFases;
 import monitor.Registro;
 import monitor.Registros;
 import monitor.Sintoma;
@@ -42,7 +42,7 @@ public class TestDiagnosticoFase {
 
     @Test
     void testCasoRegistrosVacios(){
-        DiagnosticoPorFase di = new DiagnosticoPorFase(sintomasMonitor);
+        DiagnosticoPorFases di = new DiagnosticoPorFases(sintomasMonitor);
         assertEquals(di.diagnostico(registrosMonitor), 0);
     }
 
@@ -56,8 +56,8 @@ public class TestDiagnosticoFase {
         a.add(s3f1);
         registrosMonitor.push(new Registro(parseDate("2021-07-08"), a));
 
-        DiagnosticoPorFase di = new DiagnosticoPorFase(sintomasMonitor);
-        assertEquals(di.diagnostico(registrosMonitor), 1);
+        DiagnosticoPorFases di = new DiagnosticoPorFases(sintomasMonitor);
+        assertEquals(di.diagnostico(registrosMonitor), 11);
     }
 
     @Test
@@ -75,8 +75,8 @@ public class TestDiagnosticoFase {
         a.add(s3f1);
         registrosMonitor.push(new Registro(parseDate("2021-07-08"), a));
 
-        DiagnosticoPorFase di = new DiagnosticoPorFase(sintomasMonitor);
-        assertEquals(di.diagnostico(registrosMonitor), 2);
+        DiagnosticoPorFases di = new DiagnosticoPorFases(sintomasMonitor);
+        assertEquals(di.diagnostico(registrosMonitor), 12);
     }
 
     @Test
@@ -99,8 +99,8 @@ public class TestDiagnosticoFase {
         a.add(s3f1);
         registrosMonitor.push(new Registro(parseDate("2021-07-08"), a));
 
-        DiagnosticoPorFase di = new DiagnosticoPorFase(sintomasMonitor);
-        assertEquals(di.diagnostico(registrosMonitor), 3);
+        DiagnosticoPorFases di = new DiagnosticoPorFases(sintomasMonitor);
+        assertEquals(di.diagnostico(registrosMonitor), 13);
     }
 
 
@@ -138,8 +138,8 @@ public class TestDiagnosticoFase {
         a.add(s3f1);
         registrosMonitor.push(new Registro(parseDate("2021-07-08"), a));
 
-        DiagnosticoPorFase di = new DiagnosticoPorFase(sintomasMonitor);
-        assertEquals(di.diagnostico(registrosMonitor), 3);
+        DiagnosticoPorFases di = new DiagnosticoPorFases(sintomasMonitor);
+        assertEquals(di.diagnostico(registrosMonitor), 13);
     }
 
 
@@ -167,8 +167,8 @@ public class TestDiagnosticoFase {
         a.add(s6f2);
         registrosMonitor.push(new Registro(parseDate("2021-07-08"), a));
 
-        DiagnosticoPorFase di = new DiagnosticoPorFase(sintomasMonitor);
-        assertEquals(di.diagnostico(registrosMonitor), 4);
+        DiagnosticoPorFases di = new DiagnosticoPorFases(sintomasMonitor);
+        assertEquals(di.diagnostico(registrosMonitor), 21);
     }
 
     @Test
@@ -211,8 +211,8 @@ public class TestDiagnosticoFase {
         a.add(s8f2);
         registrosMonitor.push(new Registro(parseDate("2021-07-08"), a));
 
-        DiagnosticoPorFase di = new DiagnosticoPorFase(sintomasMonitor);
-        assertEquals(di.diagnostico(registrosMonitor), 7);
+        DiagnosticoPorFases di = new DiagnosticoPorFases(sintomasMonitor);
+        assertEquals(di.diagnostico(registrosMonitor), 24);
     }
 
     @Test
@@ -251,8 +251,8 @@ public class TestDiagnosticoFase {
         a.add(s8f2);
         registrosMonitor.push(new Registro(parseDate("2021-07-08"), a));
 
-        DiagnosticoPorFase di = new DiagnosticoPorFase(sintomasMonitor);
-        assertEquals(di.diagnostico(registrosMonitor), 4);
+        DiagnosticoPorFases di = new DiagnosticoPorFases(sintomasMonitor);
+        assertEquals(di.diagnostico(registrosMonitor), 21);
     }
 
     @Test
@@ -290,8 +290,8 @@ public class TestDiagnosticoFase {
         a.add(s8f2);
         registrosMonitor.push(new Registro(parseDate("2021-07-08"), a));
 
-        DiagnosticoPorFase di = new DiagnosticoPorFase(sintomasMonitor);
-        assertEquals(di.diagnostico(registrosMonitor), 3);
+        DiagnosticoPorFases di = new DiagnosticoPorFases(sintomasMonitor);
+        assertEquals(di.diagnostico(registrosMonitor), 13);
     }
 
 
@@ -320,8 +320,8 @@ public class TestDiagnosticoFase {
         a.add(s1f1);
         registrosMonitor.push(new Registro(parseDate("2021-07-06"), a));
 
-        DiagnosticoPorFase di = new DiagnosticoPorFase(sintomasMonitor);
-        assertEquals(di.diagnostico(registrosMonitor), 1);
+        DiagnosticoPorFases di = new DiagnosticoPorFases(sintomasMonitor);
+        assertEquals(di.diagnostico(registrosMonitor), 11);
     }
 
 
@@ -363,8 +363,8 @@ public class TestDiagnosticoFase {
 
         registrosMonitor.push(new Registro(parseDate("2021-07-08"), a));
 
-        DiagnosticoPorFase di = new DiagnosticoPorFase(sintomasMonitor);
-        assertEquals(di.diagnostico(registrosMonitor), 5);
+        DiagnosticoPorFases di = new DiagnosticoPorFases(sintomasMonitor);
+        assertEquals(di.diagnostico(registrosMonitor), 22);
     }
 
     public static Date parseDate(String date) {

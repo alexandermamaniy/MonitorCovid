@@ -32,7 +32,6 @@ public class RegistroJPanel extends JPanel implements ItemListener, ActionListen
     private final VentanaJFrame frameRegistro;
     private final JButton salir;
     private final JLabel labelNombreSintoma;
-
     private Sintomas sintomasPaciente;
 
     public RegistroJPanel(Sintomas sintomasMonitorDisponibles, Registros registros, Sintomas sintomasPaciente, VentanaJFrame frameRegistro){
@@ -68,14 +67,17 @@ public class RegistroJPanel extends JPanel implements ItemListener, ActionListen
 
         comboCategoriaSintoma.addItemListener(this);
 
+
+
         for(Sintoma s: sintomasMonitorDisponibles ){
-            comboCategoriaSintoma.addItem(s.toString());
+            comboCategoriaSintoma.addItem(s.getClass().getSimpleName() +" - "+s.toString());
         }
         buttonAgregarSintoma = new JButton("Registrar");
         buttonAgregarSintoma.addActionListener(this);
         jPanel1.add(buttonAgregarSintoma);
         tablaRegistrosJPanel = new TablaRegistrosJPanel(registros);
         jPanel2.add(tablaRegistrosJPanel);
+
 
         tablaSintomasSeleccionadosJPanel = new TablaSintomasSeleccionadosJPanel();
         jPanel1.add(tablaSintomasSeleccionadosJPanel);
@@ -89,6 +91,7 @@ public class RegistroJPanel extends JPanel implements ItemListener, ActionListen
 
         if (e.getSource()== comboCategoriaSintoma && e.getStateChange() == ItemEvent.DESELECTED){
             String a = (String)(comboCategoriaSintoma.getSelectedItem());
+            a = a.split("-")[1].strip();
             CrearSintomaRegistro crearSintomaRegistro = new CrearSintomaRegistro(sintomasMonitorDisponibles);
             Sintoma s = crearSintomaRegistro.crear(a);
             sintomasPaciente.add(s);
@@ -101,16 +104,15 @@ public class RegistroJPanel extends JPanel implements ItemListener, ActionListen
 
         jPanel1.setBounds(40, 70, 670,280);
         labelNombreSintoma.setBounds(35, 25, 170,30);
-        comboCategoriaSintoma.setBounds(35, 55, 200,30);
+        comboCategoriaSintoma.setBounds(35, 55, 300,30);
         comboCategoriaSintoma.setBackground(Color.WHITE);
-        labelFecha.setBounds(280, 55, 300,30);
+        labelFecha.setBounds(350, 55, 300,30);
         buttonAgregarSintoma.setBounds(530, 55, 100,30);
         tablaSintomasSeleccionadosJPanel.setBounds(35, 100, 600,150);
 
         jPanel2.setBounds(40, 370, 670,300);
         tablaRegistrosJPanel.setBounds(35, 35, 600,230);
         salir.setBounds(610, 700, 100,30);
-
 
     }
 
@@ -124,7 +126,8 @@ public class RegistroJPanel extends JPanel implements ItemListener, ActionListen
             }
             if (i>0){
                 DatosRegistros datosRegistros = new DatosRegistros();
-                registros.push(new Registro(new Date(), sintomasPaciente));
+                Registro res = new Registro(new Date(), sintomasPaciente);
+                registros.push(res);
                 datosRegistros.guardarDatosRegistros(registros);
                 tablaSintomasSeleccionadosJPanel.clear();
                 tablaRegistrosJPanel.actualizarTabla();
