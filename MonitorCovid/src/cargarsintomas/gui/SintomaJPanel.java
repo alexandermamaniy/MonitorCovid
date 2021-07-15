@@ -75,6 +75,7 @@ public class SintomaJPanel extends JPanel implements ActionListener {
         buttonAgregarSintoma.setBounds(360, 55, 100,30);
         tablaSintomasJPanel.setBounds(35, 130, 600,350);
         terminar.setBounds(610, 700, 100,30);
+
     }
 
     public void actionPerformed(ActionEvent e) {

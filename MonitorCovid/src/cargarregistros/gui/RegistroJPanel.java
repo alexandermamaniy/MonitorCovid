@@ -32,6 +32,8 @@ public class RegistroJPanel extends JPanel implements ItemListener, ActionListen
     private final VentanaJFrame frameRegistro;
     private final JButton salir;
     private final JLabel labelNombreSintoma;
+//    private final JLabel recomendacion;
+
     private Sintomas sintomasPaciente;
 
     public RegistroJPanel(Sintomas sintomasMonitorDisponibles, Registros registros, Sintomas sintomasPaciente, VentanaJFrame frameRegistro){
@@ -39,6 +41,22 @@ public class RegistroJPanel extends JPanel implements ItemListener, ActionListen
         this.sintomasPaciente = sintomasPaciente;
         this.registros = registros;
         this.frameRegistro = frameRegistro;
+
+//        recomendacion = new JLabel("");
+//        add(recomendacion);
+//        if (!registros.isEmpty()) {
+//            for(Sintoma s: sintomasMonitorDisponibles){
+//                if(s.getClass().getName().split("\\.")[1].equals("PrimeraFase")){
+//                    recomendacion.setText("Debes ir a hacerte revisar, estas en Primera Fase");
+//
+//                } else if(s.getClass().getName().split("\\.")[1].equals("SegundaFase")){
+//                    recomendacion.setText("Debes ir a hacerte revisar, estas en Segunda Fase");
+//
+//                }
+//                break;
+//            }
+//        }
+
 
         jPanel1 = new JPanel();
         Border bordejpanel = new TitledBorder(new EtchedBorder(), "Toma de Registros");
@@ -55,6 +73,8 @@ public class RegistroJPanel extends JPanel implements ItemListener, ActionListen
 
         labelNombreSintoma = new JLabel("Sintomas");
         jPanel1.add(labelNombreSintoma);
+
+
 
         FormatoFecha formatoFecha = new FormatoFecha();
         labelFecha = new JLabel("Fecha registro: "+ formatoFecha.dateToString(new Date()) );
@@ -94,16 +114,22 @@ public class RegistroJPanel extends JPanel implements ItemListener, ActionListen
 
     public void paintComponent(Graphics g){
         super.paintComponent(g);
-        jPanel1.setBounds(40, 20, 670,330);
+
+//        recomendacion.setBounds(40, 0, 500,50);
+
+        jPanel1.setBounds(40, 70, 670,280);
         labelNombreSintoma.setBounds(35, 25, 170,30);
         comboCategoriaSintoma.setBounds(35, 55, 200,30);
         comboCategoriaSintoma.setBackground(Color.WHITE);
         labelFecha.setBounds(280, 55, 300,30);
         buttonAgregarSintoma.setBounds(530, 55, 100,30);
-        tablaSintomasSeleccionadosJPanel.setBounds(35, 100, 600,200);
+        tablaSintomasSeleccionadosJPanel.setBounds(35, 100, 600,150);
+
         jPanel2.setBounds(40, 370, 670,300);
         tablaRegistrosJPanel.setBounds(35, 35, 600,230);
         salir.setBounds(610, 700, 100,30);
+
+
     }
 
     public void actionPerformed(ActionEvent e) {

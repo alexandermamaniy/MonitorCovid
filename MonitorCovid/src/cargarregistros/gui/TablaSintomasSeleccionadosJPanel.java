@@ -20,7 +20,7 @@ public class TablaSintomasSeleccionadosJPanel extends JPanel {
     }
 
     public void addRow(String[] row){
-        dataTable.addRow(row);
+        dataTable.insertRow(0, row);
     }
 
     public void clear(){
@@ -37,6 +37,8 @@ public class TablaSintomasSeleccionadosJPanel extends JPanel {
     }
     public void paintComponent(Graphics g){
         super.paintComponent(g);
-        tableScollPanel.setBounds(0, 0, 600,200);
+        tableScollPanel.setBounds(0, 0, 600,150);
+        dataTable.insertRow(0, new String[] {""});
+        clear();
     }
 }

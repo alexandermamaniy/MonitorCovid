@@ -34,4 +34,14 @@ public class DiagnosticoSimple extends FuncionDiagnostico {
         return pesoSintomas;
     }
 
+    @Override
+    public void mostrarDiagnostico(int resultadoDiagnostico){
+
+    }
+
+    @Override
+    public Sintomas getSintomasFase(){
+        return new Sintomas();
+    }
+
 }

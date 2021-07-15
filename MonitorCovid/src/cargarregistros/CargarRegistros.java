@@ -2,6 +2,7 @@ package cargarregistros;
 
 import cargarregistros.datos.DatosRegistros;
 import cargarregistros.gui.VentanaJFrame;
+import monitor.FuncionDiagnostico;
 import monitor.Registro;
 import monitor.Registros;
 import monitor.Sintomas;
@@ -28,13 +29,19 @@ public class CargarRegistros {
         }
     }
 
-    private void cargarSintomasApp(Sintomas sintomasMonitorDisponibles, Sintomas sintomasPaciente) {
-        new VentanaJFrame(sintomasMonitorDisponibles, registros, sintomasPaciente);
+    private void cargarSintomasApp( Sintomas sintomasPaciente) {
+        new VentanaJFrame(sintomas, registros, sintomasPaciente);
+    }
+
+    public Registros getRegistros() {
+        Sintomas sintomasPaciente = new Sintomas();
+        cargarSintomasApp(sintomasPaciente);
+        return registros;
     }
 
     public Registro getRegistro() {
         Sintomas sintomasPaciente = new Sintomas();
-        cargarSintomasApp(sintomas, sintomasPaciente);
-        return new Registro(new Date(),sintomasPaciente);
+        cargarSintomasApp(sintomasPaciente);
+        return new Registro(new Date(), sintomasPaciente);
     }
 }
