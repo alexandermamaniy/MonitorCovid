@@ -77,10 +77,13 @@ public class RegistroJPanel extends JPanel implements ItemListener, ActionListen
         }
         Collections.sort(combo);
 
-        int i=0;
-        for(Sintoma s: sintomasMonitorDisponibles){
-            comboCategoriaSintoma.addItem(s.getClass().getSimpleName() +" - "+ combo.get(i));
-            i++;
+
+        for(String s: combo){
+            for (Sintoma ss : sintomasMonitorDisponibles){
+                if (ss.toString().equals(s)) {
+                    comboCategoriaSintoma.addItem(ss.getClass().getSimpleName() +" - "+ s);
+                }
+            }
         }
 
         buttonAgregarSintoma = new JButton("Registrar");

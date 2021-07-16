@@ -4,6 +4,7 @@ import cargarregistros.datos.DatosRegistros;
 import cargarregistros.gui.VentanaJFrame;
 import monitor.Registro;
 import monitor.Registros;
+import monitor.Sintoma;
 import monitor.Sintomas;
 
 import java.util.Date;

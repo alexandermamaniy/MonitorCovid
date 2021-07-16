@@ -42,7 +42,7 @@ public class Monitor {
             System.out.println("Dia "+((resultadoDiagnostico-10)) + " de la primera fase.");
             System.out.println("Usted sigue presentando sintomas de covid, y ya esta por entrar a la segunda fase de la enfermedad, asista de forma inmediata a un centro medico.");
         } else if (resultadoDiagnostico>=21) {
-            System.out.println("Dia "+((resultadoDiagnostico+3-20)) + " de la segunda fase.");
+            System.out.println("Dia "+((resultadoDiagnostico-20)) + " de la segunda fase.");
             System.out.println("Usted ya presenta sintomas de segunda fase de covid, asista de forma inmediata a un centro medio a internarse, esta en peligro.");
         }
     }

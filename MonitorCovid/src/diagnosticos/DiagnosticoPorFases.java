@@ -25,7 +25,7 @@ public class DiagnosticoPorFases extends FuncionDiagnostico {
         hallarEstadoDeDiagnostico();
 
         List<String> keySorters = new ArrayList<>(estadoDiagnosticoFechas.keySet());
-
+        Collections.sort(keySorters);
         for (String fechaString: keySorters) {
             if(estadoDiagnosticoFechas.get(fechaString).get("PrimeraFase") >= 50 && fase1 < 3){
                 fase1++;
@@ -35,7 +35,6 @@ public class DiagnosticoPorFases extends FuncionDiagnostico {
                 fase1 = 0;
             }
         }
-
         if (fase2>0) {
             dia = 20+fase2;
         } else if (fase1>0) {
@@ -90,7 +89,7 @@ public class DiagnosticoPorFases extends FuncionDiagnostico {
                 String fase = sintomasDeUnaFase.get(s);
                 Integer nroSintomasFase = nroSintomasDeCadaFase.get(fase);
                 Double porcentajeActualSintomaFase =  estadoDiagnosticoFechas.get(fechaRegistro).get(fase);
-                Double procentajeFaseSintoma = (double) (100 / nroSintomasFase);
+                Double procentajeFaseSintoma = (double) ((100 / nroSintomasFase)+1);
                 estadoDiagnosticoFechas.get(fechaRegistro).put(fase, porcentajeActualSintomaFase + procentajeFaseSintoma );
             }
         }
