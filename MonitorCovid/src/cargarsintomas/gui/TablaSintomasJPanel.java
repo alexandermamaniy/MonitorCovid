@@ -28,7 +28,7 @@ public class TablaSintomasJPanel extends JPanel {
 
         List<RowSorter.SortKey> sortKeys = new ArrayList<>(25);
         sortKeys.add(new RowSorter.SortKey(0, SortOrder.ASCENDING));
-        sortKeys.add(new RowSorter.SortKey(1, SortOrder.DESCENDING));
+        sortKeys.add(new RowSorter.SortKey(1, SortOrder.ASCENDING));
         sorTable.setSortKeys(sortKeys);
 
         add(tableScollPanel);

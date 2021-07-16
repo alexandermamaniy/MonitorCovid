@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
-import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 public class Sintomas implements Iterable<Sintoma>, Serializable {
@@ -12,7 +11,7 @@ public class Sintomas implements Iterable<Sintoma>, Serializable {
     private Set<Sintoma> sintomas;
 
     public Sintomas() {
-        sintomas = new TreeSet<>();
+        sintomas = new HashSet<>();
     }
 
     public void add(Sintoma s) {

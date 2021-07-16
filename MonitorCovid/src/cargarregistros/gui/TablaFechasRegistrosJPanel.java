@@ -11,15 +11,15 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class TablaFechasJPanel extends JPanel {
+public class TablaFechasRegistrosJPanel extends JPanel {
     private final JScrollPane tableScollPanel;
     private final DefaultTableModel dataTable;
     private final Registros registros;
-    private final TablaRegistrosJPanel tablaRegistrosJPanel;
+    private final TablaSintomasDeRegistroJPanel tablaSintomasDeRegistroJPanel;
 
-    public TablaFechasJPanel(Registros registros, TablaRegistrosJPanel tablaRegistrosJPanel){
+    public TablaFechasRegistrosJPanel(Registros registros, TablaSintomasDeRegistroJPanel tablaSintomasDeRegistroJPanel){
         this.registros = registros;
-        this.tablaRegistrosJPanel = tablaRegistrosJPanel;
+        this.tablaSintomasDeRegistroJPanel = tablaSintomasDeRegistroJPanel;
         dataTable = new DefaultTableModel();
         JTable table = new JTable(dataTable);
         tableScollPanel = new JScrollPane(table);
@@ -37,7 +37,7 @@ public class TablaFechasJPanel extends JPanel {
 
                 for(Registro r: registros) {
                     if (formatoFecha.dateAndHourToString(r.getFecha()).equals((String)table.getValueAt(row,col) )){
-                        tablaRegistrosJPanel.actualizarTabla(r.getSintomas());
+                        tablaSintomasDeRegistroJPanel.actualizarTabla(r.getSintomas());
                     }
                 }
             }

@@ -31,15 +31,19 @@ public class Monitor {
 
     private void mostrarDiaFase(int resultadoDiagnostico){
         if (resultadoDiagnostico==0){
-            System.out.println("Usted no tiene ningun sintomas de Covid, pero tiene que seguir cuidandose");
+            System.out.println("Usted no tiene ningun sintomas de Covid, pero tiene que seguir cuidandose.");
         } else if (resultadoDiagnostico==11){
-            System.out.println("Se dectecto sintomas iniciales del covid, usted se encuentra en el dia 1 de la fase 1 de covid, puede que tenga la enfermedad, acuda los mas pronto posible a hacerce una prueba.");
+            System.out.println("Dia "+((resultadoDiagnostico-10)) + " de la primera fase.");
+            System.out.println("Se dectecto sintomas iniciales del covid, puede que tenga la enfermedad, acuda los mas pronto posible a hacerce una prueba.");
         } else if (resultadoDiagnostico==12){
-            System.out.println("Usted sigue prensentado sintomas y se encuentra en el dia 2 de la fase 1 de covid, acuda de forma inmediata a hacerce una prueba.");
+            System.out.println("Dia "+((resultadoDiagnostico-10)) + " de la primera fase.");
+            System.out.println("Usted sigue presentando sintomas de covid, asista de forma inmediata a un centro medico a hacerce una prueba.");
         } else if (resultadoDiagnostico==13) {
-            System.out.println("Ya es el tercer dia que presenta sintomas de fase 1 de covid, es mas que probable que tenga covid, asista de forma inmediata a un centro medico.");
+            System.out.println("Dia "+((resultadoDiagnostico-10)) + " de la primera fase.");
+            System.out.println("Usted sigue presentando sintomas de covid, y ya esta por entrar a la segunda fase de la enfermedad, asista de forma inmediata a un centro medico.");
         } else if (resultadoDiagnostico>=21) {
-            System.out.println("Dia "+((resultadoDiagnostico+3-20))+", Usted ya presenta sintomas de fase 2 de covid, asista de forma inmediata a un centro medio a internarse!");
+            System.out.println("Dia "+((resultadoDiagnostico+3-20)) + " de la segunda fase.");
+            System.out.println("Usted ya presenta sintomas de segunda fase de covid, asista de forma inmediata a un centro medio a internarse, esta en peligro.");
         }
     }
 

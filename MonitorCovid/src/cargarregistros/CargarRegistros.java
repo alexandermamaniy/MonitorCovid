@@ -2,7 +2,6 @@ package cargarregistros;
 
 import cargarregistros.datos.DatosRegistros;
 import cargarregistros.gui.VentanaJFrame;
-import monitor.FuncionDiagnostico;
 import monitor.Registro;
 import monitor.Registros;
 import monitor.Sintomas;

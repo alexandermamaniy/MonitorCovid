@@ -17,6 +17,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 
 public class RegistroJPanel extends JPanel implements ItemListener, ActionListener {
@@ -25,9 +27,9 @@ public class RegistroJPanel extends JPanel implements ItemListener, ActionListen
     private final JButton buttonAgregarSintoma;
     private final Sintomas sintomasMonitorDisponibles;
     private final Registros registros;
-    private final TablaRegistrosJPanel tablaRegistrosJPanel;
+    private final TablaSintomasDeRegistroJPanel tablaSintomasDeRegistroJPanel;
     private final TablaSintomasSeleccionadosJPanel tablaSintomasSeleccionadosJPanel;
-    private final TablaFechasJPanel tablaFechasJPanel;
+    private final TablaFechasRegistrosJPanel tablaFechasRegistrosJPanel;
     private final JPanel jPanel1;
     private final JPanel jPanel2;
     private final VentanaJFrame frameRegistro;
@@ -68,17 +70,26 @@ public class RegistroJPanel extends JPanel implements ItemListener, ActionListen
 
         comboCategoriaSintoma.addItemListener(this);
 
+        ArrayList<String> combo = new ArrayList();
 
         for(Sintoma s: sintomasMonitorDisponibles ){
-            comboCategoriaSintoma.addItem(s.getClass().getSimpleName() +" - "+s.toString());
+            combo.add(s.toString());
         }
+        Collections.sort(combo);
+
+        int i=0;
+        for(Sintoma s: sintomasMonitorDisponibles){
+            comboCategoriaSintoma.addItem(s.getClass().getSimpleName() +" - "+ combo.get(i));
+            i++;
+        }
+
         buttonAgregarSintoma = new JButton("Registrar");
         buttonAgregarSintoma.addActionListener(this);
         jPanel1.add(buttonAgregarSintoma);
-        tablaRegistrosJPanel = new TablaRegistrosJPanel(new Sintomas());
-        jPanel2.add(tablaRegistrosJPanel);
-        tablaFechasJPanel = new TablaFechasJPanel(registros, tablaRegistrosJPanel);
-        jPanel2.add(tablaFechasJPanel);
+        tablaSintomasDeRegistroJPanel = new TablaSintomasDeRegistroJPanel(new Sintomas());
+        jPanel2.add(tablaSintomasDeRegistroJPanel);
+        tablaFechasRegistrosJPanel = new TablaFechasRegistrosJPanel(registros, tablaSintomasDeRegistroJPanel);
+        jPanel2.add(tablaFechasRegistrosJPanel);
 
         tablaSintomasSeleccionadosJPanel = new TablaSintomasSeleccionadosJPanel();
         jPanel1.add(tablaSintomasSeleccionadosJPanel);
@@ -96,7 +107,7 @@ public class RegistroJPanel extends JPanel implements ItemListener, ActionListen
             CrearSintomaRegistro crearSintomaRegistro = new CrearSintomaRegistro(sintomasMonitorDisponibles);
             Sintoma s = crearSintomaRegistro.crear(a);
             sintomasPaciente.add(s);
-            tablaSintomasSeleccionadosJPanel.addRowSintomas(sintomasPaciente);
+            tablaSintomasSeleccionadosJPanel.addRowSintomas(s);
         }
     }
 
@@ -112,8 +123,8 @@ public class RegistroJPanel extends JPanel implements ItemListener, ActionListen
         tablaSintomasSeleccionadosJPanel.setBounds(35, 100, 600,150);
 
         jPanel2.setBounds(40, 370, 670,300);
-        tablaRegistrosJPanel.setBounds(235, 35, 400,230);
-        tablaFechasJPanel.setBounds(35, 35, 200,230);
+        tablaSintomasDeRegistroJPanel.setBounds(235, 35, 400,230);
+        tablaFechasRegistrosJPanel.setBounds(35, 35, 200,230);
         salir.setBounds(610, 700, 100,30);
 
     }
@@ -132,8 +143,8 @@ public class RegistroJPanel extends JPanel implements ItemListener, ActionListen
                 registros.push(res);
                 datosRegistros.guardarDatosRegistros(registros);
                 tablaSintomasSeleccionadosJPanel.clear();
-                tablaRegistrosJPanel.actualizarTabla(sintomasMonitorDisponibles);
-                tablaFechasJPanel.actualizarTabla();
+                tablaSintomasDeRegistroJPanel.actualizarTabla(sintomasPaciente);
+                tablaFechasRegistrosJPanel.actualizarTabla();
                 sintomasPaciente = new Sintomas();
             }
         } else  if ( botonPulsado == salir){

@@ -7,13 +7,15 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
-public class TablaRegistrosJPanel extends JPanel {
+public class TablaSintomasDeRegistroJPanel extends JPanel {
     private final JScrollPane tableScollPanel;
     private final DefaultTableModel dataTable;
     private final Sintomas sintomas;
 
-    public TablaRegistrosJPanel(Sintomas sintomas){
+    public TablaSintomasDeRegistroJPanel(Sintomas sintomas){
         this.sintomas = sintomas;
         dataTable = new DefaultTableModel();
         JTable table = new JTable(dataTable);
@@ -23,6 +25,13 @@ public class TablaRegistrosJPanel extends JPanel {
 
         TableRowSorter<DefaultTableModel> sorTable = new TableRowSorter<>(dataTable);
         table.setRowSorter(sorTable);
+
+        List<RowSorter.SortKey> sortKeys = new ArrayList<>(25);
+        sortKeys.add(new RowSorter.SortKey(0, SortOrder.ASCENDING));
+        sortKeys.add(new RowSorter.SortKey(1, SortOrder.ASCENDING));
+        sorTable.setSortKeys(sortKeys);
+
+
         add(tableScollPanel);
     }
 

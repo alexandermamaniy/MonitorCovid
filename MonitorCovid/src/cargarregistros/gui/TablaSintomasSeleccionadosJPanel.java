@@ -1,7 +1,6 @@
 package cargarregistros.gui;
 
 import monitor.Sintoma;
-import monitor.Sintomas;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -23,21 +22,17 @@ public class TablaSintomasSeleccionadosJPanel extends JPanel {
         add(tableScollPanel);
     }
 
-    public void addRow(String[] row){
-        dataTable.insertRow(0, row);
-    }
-
     public void clear(){
         int rowCount = dataTable.getRowCount();
         for (int i = rowCount - 1; i >= 0; i--) {
             dataTable.removeRow(i);
         }
     }
-    public void addRowSintomas(Sintomas sintomasSeleccionados){
-        clear();
-        for (Sintoma s: sintomasSeleccionados){
-            addRow(new String[]{ s.getClass().getSimpleName(), s.toString() });
-        }
+
+    public void addRowSintomas(Sintoma sintoma){
+
+        dataTable.insertRow(0, new String[]{ sintoma.getClass().getSimpleName(), sintoma.toString() });
+
     }
     public void paintComponent(Graphics g){
         super.paintComponent(g);
