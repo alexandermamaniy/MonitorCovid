@@ -88,6 +88,17 @@ public class RegistroJPanel extends JPanel implements ItemListener, ActionListen
 
         buttonAgregarSintoma = new JButton("Registrar");
         buttonAgregarSintoma.addActionListener(this);
+
+        for(Registro r: registros){
+            System.out.println(formatoFecha.dateToString(r.getFecha()));
+            System.out.println(formatoFecha.dateToString(new Date()));
+
+            if(formatoFecha.dateToString(r.getFecha()).equals(formatoFecha.dateToString(new Date()))){
+                System.out.println("Ingres");
+                buttonAgregarSintoma.setEnabled(false);
+            }
+        }
+
         jPanel1.add(buttonAgregarSintoma);
         tablaSintomasDeRegistroJPanel = new TablaSintomasDeRegistroJPanel(new Sintomas());
         jPanel2.add(tablaSintomasDeRegistroJPanel);
@@ -149,6 +160,7 @@ public class RegistroJPanel extends JPanel implements ItemListener, ActionListen
                 tablaSintomasDeRegistroJPanel.actualizarTabla(sintomasPaciente);
                 tablaFechasRegistrosJPanel.actualizarTabla();
                 sintomasPaciente = new Sintomas();
+                buttonAgregarSintoma.setEnabled(false);
             }
         } else  if ( botonPulsado == salir){
             frameRegistro.setVisible(false);

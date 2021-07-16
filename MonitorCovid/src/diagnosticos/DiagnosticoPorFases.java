@@ -12,6 +12,7 @@ public class DiagnosticoPorFases extends FuncionDiagnostico {
     private Map<String,Sintomas> sintomasDeUnaFecha;
     private Map<String,Map<String,Double>> estadoDiagnosticoFechas;
 
+
     public DiagnosticoPorFases(Sintomas ls) {
         super(ls);
         cargarFaseSintomasMonitor(ls);
@@ -31,6 +32,8 @@ public class DiagnosticoPorFases extends FuncionDiagnostico {
                 fase1++;
             } else if ( fase1 >= 3 && estadoDiagnosticoFechas.get(fechaString).get("SegundaFase") >= 50 ) {
                 fase2++;
+            } else if ( fase1 >= 3 ) {
+                fase2 = 1;
             } else if ( fase1 < 3 ) {
                 fase1 = 0;
             }

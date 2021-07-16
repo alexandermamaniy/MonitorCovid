@@ -4,6 +4,8 @@ import cargarregistros.CargarRegistros;
 import cargarsintomas.CargarSintomas;
 import diagnosticos.DiagnosticoPorFases;
 
+import java.util.Date;
+
 public class Monitor {
     private Fase fase;
     private Sintomas sintomas;
@@ -48,12 +50,13 @@ public class Monitor {
     }
 
     private void guardarEstado(int diagnostico){
-        if(diagnostico>=13) {
+        if(diagnostico>13) {
             fase.setNombre("SegundaFase");
         } else {
             fase.setNombre("PrimeraFase");
         }
         fase.setDia(diagnostico);
+        fase.setUltimoAcceso(new Date());
         (new DatosFase()).guardarDatosFase(fase);
     }
 
