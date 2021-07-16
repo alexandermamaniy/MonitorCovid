@@ -1,9 +1,7 @@
 package cargarregistros.gui;
 
-import cargarregistros.utils.FormatoFecha;
-import cargarregistros.utils.FormatoSintomas;
-import monitor.Registro;
-import monitor.Registros;
+import monitor.Sintoma;
+import monitor.Sintomas;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -12,15 +10,15 @@ import java.awt.*;
 public class TablaRegistrosJPanel extends JPanel {
     private final JScrollPane tableScollPanel;
     private final DefaultTableModel dataTable;
-    private final Registros registros;
+    private final Sintomas sintomas;
 
-    public TablaRegistrosJPanel(Registros registros){
-        this.registros = registros;
+    public TablaRegistrosJPanel(Sintomas sintomas){
+        this.sintomas = sintomas;
         dataTable = new DefaultTableModel();
         JTable table = new JTable(dataTable);
         tableScollPanel = new JScrollPane(table);
-        dataTable.addColumn("Fecha");
-        dataTable.addColumn("Sintomas");
+        dataTable.addColumn("Categoria");
+        dataTable.addColumn("Nombre Sintoma");
 
 
         add(tableScollPanel);
@@ -34,29 +32,24 @@ public class TablaRegistrosJPanel extends JPanel {
 
     }
 
-    public void actualizarTabla(){
+    public void actualizarTabla(Sintomas sintomas){
         clear();
 
-        FormatoFecha formatoFecha = new FormatoFecha();
-        FormatoSintomas formatoSintomas = new FormatoSintomas();
-
-        for(Registro r: registros) {
-            String fecha = formatoFecha.dateAndHourToString(r.getFecha());
-            String sintomasPaciente = formatoSintomas.formatoSintomas(r.getSintomas());
-            dataTable.insertRow(0, new Object[]{fecha, sintomasPaciente });
+        for(Sintoma s: sintomas) {
+            String categoria = s.getClass().getSimpleName();
+            String nombre = s.toString();
+            dataTable.insertRow(0, new Object[]{categoria, nombre });
         }
     }
 
     public void paintComponent(Graphics g){
-        tableScollPanel.setBounds(0, 0, 600,230);
-        FormatoFecha formatoFecha = new FormatoFecha();
-        FormatoSintomas formatoSintomas = new FormatoSintomas();
+        tableScollPanel.setBounds(0, 0, 400,230);
         dataTable.insertRow(0, new Object[]{"", ""});
         clear();
-        for(Registro r: registros) {
-            String fecha = formatoFecha.dateAndHourToString(r.getFecha());
-            String sintomasPaciente = formatoSintomas.formatoSintomas(r.getSintomas());
-            dataTable.insertRow(0, new Object[]{fecha, sintomasPaciente });
+        for(Sintoma s: sintomas) {
+            String categoria = s.getClass().getSimpleName();
+            String nombre = s.toString();
+            dataTable.insertRow(0, new Object[]{categoria, nombre });
         }
     }
 }

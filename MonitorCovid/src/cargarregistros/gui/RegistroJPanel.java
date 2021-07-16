@@ -27,6 +27,7 @@ public class RegistroJPanel extends JPanel implements ItemListener, ActionListen
     private final Registros registros;
     private final TablaRegistrosJPanel tablaRegistrosJPanel;
     private final TablaSintomasSeleccionadosJPanel tablaSintomasSeleccionadosJPanel;
+    private final TablaFechasJPanel tablaFechasJPanel;
     private final JPanel jPanel1;
     private final JPanel jPanel2;
     private final VentanaJFrame frameRegistro;
@@ -68,16 +69,16 @@ public class RegistroJPanel extends JPanel implements ItemListener, ActionListen
         comboCategoriaSintoma.addItemListener(this);
 
 
-
         for(Sintoma s: sintomasMonitorDisponibles ){
             comboCategoriaSintoma.addItem(s.getClass().getSimpleName() +" - "+s.toString());
         }
         buttonAgregarSintoma = new JButton("Registrar");
         buttonAgregarSintoma.addActionListener(this);
         jPanel1.add(buttonAgregarSintoma);
-        tablaRegistrosJPanel = new TablaRegistrosJPanel(registros);
+        tablaRegistrosJPanel = new TablaRegistrosJPanel(new Sintomas());
         jPanel2.add(tablaRegistrosJPanel);
-
+        tablaFechasJPanel = new TablaFechasJPanel(registros, tablaRegistrosJPanel);
+        jPanel2.add(tablaFechasJPanel);
 
         tablaSintomasSeleccionadosJPanel = new TablaSintomasSeleccionadosJPanel();
         jPanel1.add(tablaSintomasSeleccionadosJPanel);
@@ -111,7 +112,8 @@ public class RegistroJPanel extends JPanel implements ItemListener, ActionListen
         tablaSintomasSeleccionadosJPanel.setBounds(35, 100, 600,150);
 
         jPanel2.setBounds(40, 370, 670,300);
-        tablaRegistrosJPanel.setBounds(35, 35, 600,230);
+        tablaRegistrosJPanel.setBounds(235, 35, 400,230);
+        tablaFechasJPanel.setBounds(35, 35, 200,230);
         salir.setBounds(610, 700, 100,30);
 
     }
@@ -130,7 +132,8 @@ public class RegistroJPanel extends JPanel implements ItemListener, ActionListen
                 registros.push(res);
                 datosRegistros.guardarDatosRegistros(registros);
                 tablaSintomasSeleccionadosJPanel.clear();
-                tablaRegistrosJPanel.actualizarTabla();
+                tablaRegistrosJPanel.actualizarTabla(sintomasMonitorDisponibles);
+                tablaFechasJPanel.actualizarTabla();
                 sintomasPaciente = new Sintomas();
             }
         } else  if ( botonPulsado == salir){
