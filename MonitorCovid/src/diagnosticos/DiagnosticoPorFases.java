@@ -96,5 +96,4 @@ public class DiagnosticoPorFases extends FuncionDiagnostico {
         }
 
     }
-
 }
